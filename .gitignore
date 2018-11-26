@@ -16,7 +16,7 @@ cmake-build-debug
 *.pch
 
 # Compiled Dynamic libraries
-*.so
+# *.so
 *.dylib
 *.dll
 
@@ -27,7 +27,7 @@ cmake-build-debug
 # Compiled Static libraries
 *.lai
 *.la
-*.a
+# *.a
 *.lib
 
 # Executables
