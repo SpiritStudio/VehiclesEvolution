@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/VehiclesEvolution.dir/main.cpp.o  -o VehiclesEvolution -Wl,-rpath,/home/julex/VehiclesEvolution/lib ../lib/libsfml-graphics.so ../lib/libsfml-window.so ../lib/libsfml-system.so ../lib/libsfml-audio.so ../lib/libsfml-network.so ../lib/libBox2D.a 
