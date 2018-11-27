@@ -8,7 +8,8 @@ set(CMAKE_CXX_STANDARD 14)
 # Define sources and executable
 set(EXECUTABLE_NAME "VehiclesEvolution")
 add_executable(${EXECUTABLE_NAME}
-        main.cpp)
+        main.cpp
+        ${PROJECT_SOURCE_DIR}/include/Singleton.h)
 
 set(SFML_LIBRARIES "${PROJECT_SOURCE_DIR}/lib/libsfml-graphics.so"
                    "${PROJECT_SOURCE_DIR}/lib/libsfml-window.so"
