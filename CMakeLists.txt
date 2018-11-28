@@ -12,8 +12,9 @@ set(CMAKE_CXX_STANDARD 14)
 
 # Define sources and executable
 set(EXECUTABLE_NAME "VehiclesEvolution")
+
 add_executable(${EXECUTABLE_NAME}
-        src/main.cpp src/Physics.cpp src/Car.cpp src/Map.cpp src/CarParameters.cpp include/CarParameters.h)
+        src/main.cpp src/Physics.cpp src/Car.cpp src/Map.cpp src/EvolutionaryAlgorithm/CarParameters.cpp)
 
 set(SFML_LIBRARIES "${PROJECT_SOURCE_DIR}/lib/libsfml-graphics.so"
                    "${PROJECT_SOURCE_DIR}/lib/libsfml-window.so"

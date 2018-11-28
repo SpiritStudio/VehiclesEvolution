@@ -16,7 +16,7 @@
 // Project files
 #include <Car.h>
 #include <Map.h>
-#include <CarParameters.h>
+#include <EvolutionaryAlgorithm/CarParameters.h>
 
 /**
  * Class implementing Factory and Singleton design patterns
