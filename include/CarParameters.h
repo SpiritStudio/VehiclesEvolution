@@ -1,0 +1,14 @@
+//
+// Created by SpiritStudio on 28.11.18.
+//
+
+#ifndef VEHICLESEVOLUTION_CARPARAMETERS_H
+#define VEHICLESEVOLUTION_CARPARAMETERS_H
+
+
+class CarParameters {
+
+};
+
+
+#endif //VEHICLESEVOLUTION_CARPARAMETERS_H

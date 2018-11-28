@@ -1,15 +1,19 @@
+#
+# Created by SpiritStudio on 28.11.18.
+#
+
 cmake_minimum_required(VERSION 3.12)
 project(VehiclesEvolution)
 
 include_directories(.)
+include_directories(include)
 
 set(CMAKE_CXX_STANDARD 14)
 
 # Define sources and executable
 set(EXECUTABLE_NAME "VehiclesEvolution")
 add_executable(${EXECUTABLE_NAME}
-        main.cpp
-        ${PROJECT_SOURCE_DIR}/include/Singleton.h)
+        src/main.cpp src/Physics.cpp src/Car.cpp src/Map.cpp src/CarParameters.cpp include/CarParameters.h)
 
 set(SFML_LIBRARIES "${PROJECT_SOURCE_DIR}/lib/libsfml-graphics.so"
                    "${PROJECT_SOURCE_DIR}/lib/libsfml-window.so"
