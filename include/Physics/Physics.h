@@ -14,8 +14,8 @@
 #include <iostream>
 
 // Project files
-#include <Car.h>
-#include <Map.h>
+#include <Physics/Car.h>
+#include <Physics/Map.h>
 #include <EvolutionaryAlgorithm/CarParameters.h>
 
 /**

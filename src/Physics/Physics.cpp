@@ -2,7 +2,7 @@
 // Created by SpiritStudio on 28.11.18.
 //
 
-#include "Physics.h"
+#include <Physics/Physics.h>
 
 Physics::Physics()  : gravity_(0.0f, 0.001f),
                       world_(gravity_, false) {

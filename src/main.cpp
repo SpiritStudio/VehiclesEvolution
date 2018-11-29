@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <Box2D/Box2D.h>
 
-#include <Physics.h>
+#include <Physics/Physics.h>
 
 int main()
 {
