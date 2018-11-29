@@ -55,18 +55,38 @@ void Physics::update() {
     int32 velocityIterations = 6;
     int32 positionIterations = 2;
 
-    getInstance().world_.Step(timeStep, velocityIterations, positionIterations);
+    world_.Step(timeStep, velocityIterations, positionIterations);
 
-    std::cout << "Body.x: " << getInstance().body_->GetPosition().x <<
-                 ", Body.y: " << getInstance().body_->GetPosition().y << std::endl;
+    std::cout << "Body.x: " << body_->GetPosition().x <<
+                 ", Body.y: " << body_->GetPosition().y << std::endl;
 }
 
 bool Physics::allDead() {
     return false;
 }
 
+void Physics::notifyCars(PhysicsObserver &observer) {
+    observer.newCars(cars_);
+}
+
+void Physics::notifyMap(PhysicsObserver &observer) {
+    observer.newMap(map_);
+}
+
+void Physics::notifyCarsPositions(PhysicsObserver &observer) {
+    observer.newCarsPositions(cars_);
+}
+
 void Physics::makeCars(const std::vector<CarParameters> &cars_parameters) {
 
+}
+
+const std::vector<std::unique_ptr<Car>>& Physics::getCars() {
+    return cars_;
+}
+
+const std::unique_ptr<Map>& Physics::getMap() {
+    return map_;
 }
 
 std::unique_ptr<Car> Physics::makeCar(const CarParameters &car_parameters) {

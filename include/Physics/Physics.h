@@ -16,7 +16,9 @@
 // Project files
 #include <Physics/Car.h>
 #include <Physics/Map.h>
+#include <Physics/PhysicsObserver.h>
 #include <EvolutionaryAlgorithm/CarParameters.h>
+
 
 /**
  * Class implementing Factory and Singleton design patterns
@@ -33,15 +35,22 @@ public:
         return physicsInstance;
     }
 
-    static void update();
-    static bool allDead();
+    void update();
+    bool allDead();
 
-    static void makeCars(const std::vector<CarParameters> &cars_parameters);
+    void makeCars(const std::vector<CarParameters> &cars_parameters);
+
+    void notifyCars(PhysicsObserver &observer);
+    void notifyMap(PhysicsObserver &observer);
+    void notifyCarsPositions(PhysicsObserver &observer);
+
+    const std::vector<std::unique_ptr<Car>>& getCars();
+    const std::unique_ptr<Map>& getMap();
 
 private:
     Physics();
 
-    static std::unique_ptr<Car> makeCar(const CarParameters &car_parameters);
+    std::unique_ptr<Car> makeCar(const CarParameters &car_parameters);
 
     b2Vec2 gravity_;
     b2World world_;

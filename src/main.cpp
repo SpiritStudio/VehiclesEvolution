@@ -2,31 +2,33 @@
 // Created by SpiritStudio on 20.11.18.
 //
 
-#include <SFML/Graphics.hpp>
-#include <Box2D/Box2D.h>
-
 #include <Physics/Physics.h>
+#include <Graphics/Graphics.h>
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    Physics::getInstance().notifyMap(Graphics::getInstance());
 
-    while (window.isOpen())
+//    Every generation goes like this
+//
+//
+//    if (Physics::getInstance().allDead())
+//    {
+//        Physics::getInstance().makeCars(
+//                EvolutionaryAlgorithm::getInstance.makeParameters(
+//                        Physics::getInstance().getLatestDistances()));
+//
+//        Physics::getInstance().notifyCars(Graphics::getInstance());
+//    }
+
+    while (Graphics::getInstance().isWindowOpen())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+        Graphics::getInstance().handleEvents();
 
         Physics::getInstance().update();
+        Physics::getInstance().notifyCarsPositions(Graphics::getInstance());
 
-        window.clear();
-        window.draw(shape);
-        window.display();
+        Graphics::getInstance().draw();
     }
 
     return 0;
