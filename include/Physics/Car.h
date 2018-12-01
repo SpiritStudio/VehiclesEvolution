@@ -10,7 +10,7 @@
 class Car {
 
 public:
-    Car(b2World &world);
+    Car(b2World &world, const b2Vec2 &position);
 
     b2Vec2 getPosition() const;
     double getAngle() const;

@@ -4,9 +4,9 @@
 
 #include <Physics/Car.h>
 
-Car::Car(b2World &world) : is_dead_(false) {
+Car::Car(b2World &world, const b2Vec2 &position) : is_dead_(false) {
     body_def_.type = b2_dynamicBody;
-    body_def_.position.Set(6.7f, 0.0f);
+    body_def_.position.Set(position.x, position.y);
     body_ = world.CreateBody(&body_def_);
 
     dynamic_box_.SetAsBox(1.25f, 0.4f);

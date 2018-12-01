@@ -35,7 +35,7 @@ void Graphics::newCarsPositions(const std::vector<Car> &cars) {
     int i = 0;
     for (const auto &car : cars)
     {
-        auto angle = static_cast<float>(car.getAngle()) * 180.0f / M_PI;
+        auto angle = static_cast<float>(car.getAngle() * 180.0f / M_PI);
         sf::Vector2f position = sf::Vector2f(PIXELS_PER_METER_ * car.getPosition().x,
                                              PIXELS_PER_METER_ * car.getPosition().y);
         cars_graphics_.at(i).setPositionAndAngle(position, angle);
