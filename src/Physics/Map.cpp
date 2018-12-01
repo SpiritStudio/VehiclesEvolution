@@ -23,7 +23,18 @@ Map::Map(b2World &world) {
 
     map_shape_.Set(vertices, 8);
 
-    body_->CreateFixture(&map_shape_, 10.0f);
+    fixture_def_.shape = &map_shape_;
+
+    // Set the box density to be non-zero, so it will be dynamic.
+    fixture_def_.density = 1.0f;
+
+    // Override the default friction.
+    fixture_def_.friction = 0.1f;
+
+    fixture_def_.filter.categoryBits = 0x0002;
+    fixture_def_.filter.maskBits = 0x0001;
+
+    body_->CreateFixture(&fixture_def_);
 }
 
 b2Vec2 Map::getPosition() const {

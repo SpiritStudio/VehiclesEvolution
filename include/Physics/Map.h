@@ -19,6 +19,7 @@ public:
 private:
     b2BodyDef body_def_;
     b2PolygonShape map_shape_;
+    b2FixtureDef fixture_def_;
     b2Body *body_;
 
 };

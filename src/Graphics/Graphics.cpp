@@ -39,6 +39,15 @@ void Graphics::newCarsPositions(const std::vector<Car> &cars) {
         sf::Vector2f position = sf::Vector2f(PIXELS_PER_METER_ * car.getPosition().x,
                                              PIXELS_PER_METER_ * car.getPosition().y);
         cars_graphics_.at(i).setPositionAndAngle(position, angle);
+
+        sf::Vector2f front_wheel_position = sf::Vector2f(PIXELS_PER_METER_ * car.getFrontWheelPosition().x,
+                                                         PIXELS_PER_METER_ * car.getFrontWheelPosition().y);
+        cars_graphics_.at(i).setFrontWheelPosition(front_wheel_position);
+
+        sf::Vector2f rear_wheel_position = sf::Vector2f(PIXELS_PER_METER_ * car.getRearWheelPosition().x,
+                                                         PIXELS_PER_METER_ * car.getRearWheelPosition().y);
+        cars_graphics_.at(i).setRearWheelPosition(rear_wheel_position);
+
         ++i;
     }
 }

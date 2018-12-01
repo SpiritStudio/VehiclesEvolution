@@ -14,6 +14,8 @@ public:
     CarGraphics();
 
     void setPositionAndAngle(const sf::Vector2f &position, float angle);
+    void setFrontWheelPosition(const sf::Vector2f &position);
+    void setRearWheelPosition(const sf::Vector2f &position);
 
 
 private:

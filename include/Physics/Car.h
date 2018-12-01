@@ -7,23 +7,27 @@
 
 #include <Box2D/Box2D.h>
 
+#include <Physics/CarBody.h>
+#include <Physics/Wheel.h>
+
 class Car {
 
 public:
-    Car(b2World &world, const b2Vec2 &position);
+    Car(b2World &world, const b2Vec2 &position, const b2Vec2 &front_wheel_offset, const b2Vec2 &rear_wheel_offset);
 
     b2Vec2 getPosition() const;
+    b2Vec2 getFrontWheelPosition() const;
+    b2Vec2 getRearWheelPosition() const;
     double getAngle() const;
     bool isDead() const;
 
 private:
-    b2BodyDef body_def_;
-    b2PolygonShape dynamic_box_;
-    b2FixtureDef fixture_def_;
-    b2Body *body_;
+    Wheel front_wheel_, rear_wheel_;
+    CarBody car_body_;
 
-    // Wheel front_, back_;
-    // CarBody car_body_;
+    b2RevoluteJointDef front_joint_def_, rear_joint_def_;
+    b2RevoluteJoint *front_joint_;
+    b2RevoluteJoint *rear_joint_;
 
     bool is_dead_;
 
