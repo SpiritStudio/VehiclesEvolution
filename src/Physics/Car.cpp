@@ -5,21 +5,21 @@
 #include <Physics/Car.h>
 
 Car::Car(b2World &world) : is_dead_(false) {
-    bodyDef_.type = b2_dynamicBody;
-    bodyDef_.position.Set(0.0f, 2.0f);
-    body_ = world.CreateBody(&bodyDef_);
+    body_def_.type = b2_dynamicBody;
+    body_def_.position.Set(6.7f, 0.0f);
+    body_ = world.CreateBody(&body_def_);
 
-    dynamicBox_.SetAsBox(3.0f, 1.0f);
-    fixtureDef_.shape = &dynamicBox_;
+    dynamic_box_.SetAsBox(1.25f, 0.4f);
+    fixture_def_.shape = &dynamic_box_;
 
     // Set the box density to be non-zero, so it will be dynamic.
-    fixtureDef_.density = 1.0f;
+    fixture_def_.density = 1.0f;
 
     // Override the default friction.
-    fixtureDef_.friction = 0.3f;
+    fixture_def_.friction = 0.1f;
 
     // Add the shape to the body.
-    body_->CreateFixture(&fixtureDef_);
+    body_->CreateFixture(&fixture_def_);
 }
 
 b2Vec2 Car::getPosition() const {

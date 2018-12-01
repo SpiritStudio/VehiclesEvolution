@@ -19,18 +19,27 @@ void Graphics::newCars(const std::vector<Car> &cars) {
 }
 
 void Graphics::newMap(const Map &map) {
-    std::cout << "Notifying new Map" << std::endl;
+    auto polyline = map.getPolyline();
+
+    map_graphic_.resetPolyline(polyline.size());
+
+    int i = 0;
+    for (const auto &vertex : polyline)
+    {
+        map_graphic_.setVertex(i, sf::Vector2f(PIXELS_PER_METER_ * vertex.x, PIXELS_PER_METER_ * vertex.y));
+        ++i;
+    }
 }
 
 void Graphics::newCarsPositions(const std::vector<Car> &cars) {
     int i = 0;
     for (const auto &car : cars)
     {
-        auto angle = static_cast<float>(car.getAngle());
+        auto angle = static_cast<float>(car.getAngle()) * 180.0f / M_PI;
         sf::Vector2f position = sf::Vector2f(PIXELS_PER_METER_ * car.getPosition().x,
                                              PIXELS_PER_METER_ * car.getPosition().y);
         cars_graphics_.at(i).setPositionAndAngle(position, angle);
-        i++;
+        ++i;
     }
 }
 

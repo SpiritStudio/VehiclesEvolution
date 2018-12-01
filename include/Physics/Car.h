@@ -17,9 +17,9 @@ public:
     bool isDead() const;
 
 private:
-    b2BodyDef bodyDef_;
-    b2PolygonShape dynamicBox_;
-    b2FixtureDef fixtureDef_;
+    b2BodyDef body_def_;
+    b2PolygonShape dynamic_box_;
+    b2FixtureDef fixture_def_;
     b2Body *body_;
 
     // Wheel front_, back_;

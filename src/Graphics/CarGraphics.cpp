@@ -6,10 +6,10 @@
 
 #include <Graphics/CarGraphics.h>
 
-CarGraphics::CarGraphics() : wheel_front_position_offset_(150.0f, 50.0f),
-                             wheel_rear_position_offset_(0.0f, 50.0f) {
+CarGraphics::CarGraphics() : wheel_front_position_offset_(75.0f, 25.0f),
+                             wheel_rear_position_offset_(-75.0f, 25.0f) {
     car_body_graphics_.setPointCount(4);
-    car_body_graphics_.setOrigin(sf::Vector2f(0.0f, 0.0f));
+    car_body_graphics_.setOrigin(sf::Vector2f(75.0f, 25.0f));
     car_body_graphics_.setPoint(0, sf::Vector2f(0.0f, 0.0f));
     car_body_graphics_.setPoint(1, sf::Vector2f(150.0f, 0.0f));
     car_body_graphics_.setPoint(2, sf::Vector2f(150.0f, 50.0f));
