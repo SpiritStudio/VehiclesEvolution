@@ -7,14 +7,14 @@
 
 
 #include <vector>
-#include "Box2D/Box2D.h"
+#include <Box2D/Box2D.h>
 
 class CarParameters {
 
 public:
-    double frontWheelRadius, rearWheelRadius;
-    std::vector<b2Vec2> carBody;
-    b2Vec2 const* frontJoint, rearJoint;
+    double front_wheel_radius_, rear_wheel_radius_;
+    std::vector<b2Vec2> car_body_;
+    b2Vec2 const& front_joint_, rear_joint_;
 
 };
 
