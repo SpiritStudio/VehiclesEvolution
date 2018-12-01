@@ -10,6 +10,7 @@ Wheel::Wheel(b2World &world, const b2Vec2 &position) {
     body_ = world.CreateBody(&body_def_);
 
     dynamic_circle_.m_radius = 0.5;
+
     fixture_def_.shape = &dynamic_circle_;
 
     // Set the box density to be non-zero, so it will be dynamic.
@@ -17,6 +18,8 @@ Wheel::Wheel(b2World &world, const b2Vec2 &position) {
 
     // Override the default friction.
     fixture_def_.friction = 0.1f;
+
+    fixture_def_.restitution = 0.2;
 
     fixture_def_.filter.categoryBits = 0x0001;
     fixture_def_.filter.maskBits = 0x0002;

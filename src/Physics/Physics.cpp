@@ -8,7 +8,7 @@ Physics::Physics()  : gravity_(0.0f, 9.81f),
                       world_(gravity_, false),
                       map_(world_) {
     // Temporary
-    cars_.emplace_back(Car(world_, b2Vec2(5.7f, 4.0f),
+    cars_.emplace_back(Car(world_, b2Vec2(5.7f, 1.0f),
                        b2Vec2(75.0f/60.0f, 25.0f/60.0f), b2Vec2(-75.0f/60.0f, 25.0f/60.0f)));
     cars_.emplace_back(Car(world_, b2Vec2(3.7f, 4.0f),
                        b2Vec2(75.0f/60.0f, 25.0f/60.0f), b2Vec2(-75.0f/60.0f, 25.0f/60.0f)));

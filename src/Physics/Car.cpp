@@ -14,8 +14,8 @@ Car::Car(b2World &world, const b2Vec2 &position,
     front_joint_def_.collideConnected = false;
     front_joint_def_.localAnchorA.Set(1.25f, 0.5f);
     front_joint_def_.localAnchorB.Set(0, 0);
-    front_joint_def_.maxMotorTorque = 200.0f;
-    front_joint_def_.motorSpeed = 50.0f;
+    front_joint_def_.maxMotorTorque = 2.0f;
+    front_joint_def_.motorSpeed = 10.0f;
     front_joint_def_.enableMotor = true;
 
     front_joint_ = (b2RevoluteJoint*)world.CreateJoint(&front_joint_def_);
@@ -26,7 +26,7 @@ Car::Car(b2World &world, const b2Vec2 &position,
     rear_joint_def_.localAnchorA.Set(-1.25f, 0.5f);
     rear_joint_def_.localAnchorB.Set(0, 0);
     rear_joint_def_.maxMotorTorque = 400.0f;
-    rear_joint_def_.motorSpeed = 50.0f;
+    rear_joint_def_.motorSpeed = 10.0f;
     rear_joint_def_.enableMotor = true;
 
     rear_joint_ = (b2RevoluteJoint*)world.CreateJoint(&rear_joint_def_);
