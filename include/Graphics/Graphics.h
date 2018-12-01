@@ -12,6 +12,9 @@
 #include <Physics/Physics.h>
 #include <Physics/PhysicsObserver.h>
 
+#include <Graphics/CarGraphics.h>
+#include <Graphics/MapGraphics.h>
+
 /**
  * Class implementing Singleton and Pseudo-Observer design patterns
  */
@@ -27,24 +30,29 @@ public:
         return graphicsInstance;
     }
 
-    void newCars(const std::vector<std::unique_ptr<Car>> &cars) override;
-    void newMap(const std::unique_ptr<Map> &map) override;
-    void newCarsPositions(const std::vector<std::unique_ptr<Car>> &cars) override;
+    void newCars(const std::vector<Car> &cars) override;
+    void newMap(const Map &map) override;
+    void newCarsPositions(const std::vector<Car> &cars) override;
 
     bool isWindowOpen() const;
     void handleEvents();
+
+    void ensureConstantFrameRate();
+    void restartClock();
 
     void draw();
 
 private:
     Graphics();
 
-    //std::vector<std::unique_ptr<CarGraphics>> cars_graphics_;
-    //std::unique_ptr<MapGraphics> map_graphic_;
+    static constexpr float PIXELS_PER_METER_ = 60.0f;
 
-    // temporary
+    std::vector<CarGraphics> cars_graphics_;
+    MapGraphics map_graphic_;
+
     sf::RenderWindow window_;
-    sf::CircleShape shape_;
+    sf::Clock clock_;
+    sf::Time time_;
 
 };
 

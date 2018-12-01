@@ -15,9 +15,9 @@ class PhysicsObserver {
 public:
     explicit PhysicsObserver() = default;
 
-    virtual void newCars(const std::vector<std::unique_ptr<Car>> &cars) = 0;
-    virtual void newMap(const std::unique_ptr<Map> &map) = 0;
-    virtual void newCarsPositions(const std::vector<std::unique_ptr<Car>> &cars) = 0;
+    virtual void newCars(const std::vector<Car> &cars) = 0;
+    virtual void newMap(const Map &map) = 0;
+    virtual void newCarsPositions(const std::vector<Car> &cars) = 0;
 };
 
 

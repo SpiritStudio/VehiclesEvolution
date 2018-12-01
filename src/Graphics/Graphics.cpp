@@ -4,21 +4,34 @@
 
 #include <Graphics/Graphics.h>
 
-Graphics::Graphics() : window_(sf::VideoMode(200, 200), "Vehicles Evolution Simulation"),
-                       shape_(100.0f) {
-    shape_.setFillColor(sf::Color::Red);
+Graphics::Graphics() : window_(sf::VideoMode(800, 600), "Vehicles Evolution Simulation"),
+                       clock_() {
+
 }
 
-void Graphics::newCars(const std::vector<std::unique_ptr<Car>> &cars) {
-    std::cout << "Notifying new Cars" << std::endl;
+void Graphics::newCars(const std::vector<Car> &cars) {
+    cars_graphics_.clear();
+
+    for (const auto &car : cars)
+    {
+        cars_graphics_.emplace_back(CarGraphics());
+    }
 }
 
-void Graphics::newMap(const std::unique_ptr<Map> &map) {
+void Graphics::newMap(const Map &map) {
     std::cout << "Notifying new Map" << std::endl;
 }
 
-void Graphics::newCarsPositions(const std::vector<std::unique_ptr<Car>> &cars) {
-    std::cout << "Notifying new Cars Positions" << std::endl;
+void Graphics::newCarsPositions(const std::vector<Car> &cars) {
+    int i = 0;
+    for (const auto &car : cars)
+    {
+        auto angle = static_cast<float>(car.getAngle());
+        sf::Vector2f position = sf::Vector2f(PIXELS_PER_METER_ * car.getPosition().x,
+                                             PIXELS_PER_METER_ * car.getPosition().y);
+        cars_graphics_.at(i).setPositionAndAngle(position, angle);
+        i++;
+    }
 }
 
 bool Graphics::isWindowOpen() const {
@@ -36,6 +49,24 @@ void Graphics::handleEvents() {
 
 void Graphics::draw() {
     window_.clear();
-    window_.draw(shape_);
+
+    window_.draw(map_graphic_);
+
+    for (const auto &car_graphics : cars_graphics_)
+    {
+        window_.draw(car_graphics);
+    }
+
     window_.display();
+}
+
+void Graphics::ensureConstantFrameRate() {
+    time_ = clock_.restart();
+    sf::Time time_for_sleep = sf::milliseconds(17) - time_;
+    sf::sleep(time_for_sleep);
+    time_ = clock_.restart();
+}
+
+void Graphics::restartClock() {
+    time_ = clock_.restart();
 }

@@ -4,10 +4,10 @@
 
 #include <Physics/Physics.h>
 
-Physics::Physics()  : gravity_(0.0f, 0.001f),
+Physics::Physics()  : gravity_(0.0f, 9.81f),
                       world_(gravity_, false) {
     b2BodyDef groundBodyDef;
-    groundBodyDef.position.Set(0.0f, -10.0f);
+    groundBodyDef.position.Set(0.0f, 10.0f);
 
     // Call the body factory which allocates memory for the ground body
     // from a pool and creates the ground box shape (also from a pool).
@@ -18,33 +18,13 @@ Physics::Physics()  : gravity_(0.0f, 0.001f),
     b2PolygonShape groundBox;
 
     // The extents are the half-widths of the box.
-    groundBox.SetAsBox(50.0f, 10.0f);
+    groundBox.SetAsBox(50.0f, 1.0f);
 
     // Add the ground fixture to the ground body.
     groundBody->CreateFixture(&groundBox, 10.0f);
 
-    // Define the dynamic body. We set its position and call the body factory.
-    b2BodyDef bodyDef;
-    bodyDef.type = b2_dynamicBody;
-    bodyDef.position.Set(0.0f, 2.0f);
-    body_ = world_.CreateBody(&bodyDef);
-
-    // Define another box shape for our dynamic body.
-    b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(1.0f, -10.0f);
-
-    // Define the dynamic body fixture.
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &dynamicBox;
-
-    // Set the box density to be non-zero, so it will be dynamic.
-    fixtureDef.density = 1.0f;
-
-    // Override the default friction.
-    fixtureDef.friction = 0.3f;
-
-    // Add the shape to the body.
-    body_->CreateFixture(&fixtureDef);
+    // Temporary
+    cars_.emplace_back(Car(world_));
 }
 
 void Physics::update() {
@@ -57,8 +37,8 @@ void Physics::update() {
 
     world_.Step(timeStep, velocityIterations, positionIterations);
 
-    std::cout << "Body.x: " << body_->GetPosition().x <<
-                 ", Body.y: " << body_->GetPosition().y << std::endl;
+    std::cout << "Body.x: " << cars_.at(0).getPosition().x <<
+                 ", Body.y: " << cars_.at(0).getPosition().y << std::endl;
 }
 
 bool Physics::allDead() {
@@ -81,14 +61,14 @@ void Physics::makeCars(const std::vector<CarParameters> &cars_parameters) {
 
 }
 
-const std::vector<std::unique_ptr<Car>>& Physics::getCars() {
+const std::vector<Car>& Physics::getCars() {
     return cars_;
 }
 
-const std::unique_ptr<Map>& Physics::getMap() {
+const Map& Physics::getMap() {
     return map_;
 }
 
-std::unique_ptr<Car> Physics::makeCar(const CarParameters &car_parameters) {
+const Car& Physics::makeCar(const CarParameters &car_parameters) {
 
 }

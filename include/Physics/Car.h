@@ -10,13 +10,17 @@
 class Car {
 
 public:
-    Car();
+    Car(b2World &world);
 
-    b2Vec3 getPosition() const;
+    b2Vec2 getPosition() const;
+    double getAngle() const;
     bool isDead() const;
 
 private:
-    b2Vec3 position_;
+    b2BodyDef bodyDef_;
+    b2PolygonShape dynamicBox_;
+    b2FixtureDef fixtureDef_;
+    b2Body *body_;
 
     // Wheel front_, back_;
     // CarBody car_body_;

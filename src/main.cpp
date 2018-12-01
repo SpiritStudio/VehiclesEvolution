@@ -8,6 +8,7 @@
 int main()
 {
     Physics::getInstance().notifyMap(Graphics::getInstance());
+    Physics::getInstance().notifyCars(Graphics::getInstance());
 
 //    Every generation goes like this
 //
@@ -20,6 +21,7 @@ int main()
 //
 //        Physics::getInstance().notifyCars(Graphics::getInstance());
 //    }
+    Graphics::getInstance().restartClock();
 
     while (Graphics::getInstance().isWindowOpen())
     {
@@ -29,6 +31,7 @@ int main()
         Physics::getInstance().notifyCarsPositions(Graphics::getInstance());
 
         Graphics::getInstance().draw();
+        Graphics::getInstance().ensureConstantFrameRate();
     }
 
     return 0;
