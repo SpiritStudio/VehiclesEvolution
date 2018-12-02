@@ -4,7 +4,8 @@
 
 #include <Graphics/Graphics.h>
 
-Graphics::Graphics() : window_(sf::VideoMode(800, 600), "Vehicles Evolution Simulation"),
+Graphics::Graphics() : settings_(0, 0, 4),
+                       window_(sf::VideoMode(800, 600), "Vehicles Evolution Simulation", sf::Style::Default, settings_),
                        clock_() {
 
 }

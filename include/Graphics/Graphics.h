@@ -50,6 +50,7 @@ private:
     std::vector<CarGraphics> cars_graphics_;
     MapGraphics map_graphic_;
 
+    sf::ContextSettings settings_;
     sf::RenderWindow window_;
     sf::Clock clock_;
     sf::Time time_;
