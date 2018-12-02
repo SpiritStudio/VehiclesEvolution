@@ -15,7 +15,7 @@ void Graphics::newCars(const std::vector<Car> &cars) {
 
     for (const auto &car : cars)
     {
-        cars_graphics_.emplace_back(CarGraphics());
+        cars_graphics_.emplace_back();
     }
 }
 
@@ -33,7 +33,7 @@ void Graphics::newMap(const Map &map) {
 }
 
 void Graphics::newCarsPositions(const std::vector<Car> &cars) {
-    int i = 0;
+    unsigned long i = 0;
     for (const auto &car : cars)
     {
         auto angle = static_cast<float>(car.getAngle() * 180.0f / M_PI);

@@ -42,7 +42,7 @@ b2Vec2 Map::getPosition() const {
 }
 
 std::vector<b2Vec2> Map::getPolyline() const {
-    std::vector<b2Vec2> vertices(map_shape_.GetVertexCount());
+    std::vector<b2Vec2> vertices(static_cast<unsigned long>(map_shape_.GetVertexCount()));
 
     int32 i = 0;
     for (auto &vertex : vertices)
