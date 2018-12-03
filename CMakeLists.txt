@@ -26,8 +26,14 @@ set(SFML_LIBRARIES "${PROJECT_SOURCE_DIR}/lib/libsfml-graphics.so"
                    "${PROJECT_SOURCE_DIR}/lib/libsfml-network.so" )
 set(BOX2D_LIBRARIES "${PROJECT_SOURCE_DIR}/lib/libBox2D.a")
 set(TGUI_LIBRARIES "${PROJECT_SOURCE_DIR}/lib/libtgui.so")
+set(GTEST_LIBRARIES "${PROJECT_SOURCE_DIR}/lib/libgtest.a"
+                    "${PROJECT_SOURCE_DIR}/lib/libgtest_main.a")
 
-target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES} ${BOX2D_LIBRARIES} ${TGUI_LIBRARIES})
+target_link_libraries(${EXECUTABLE_NAME}
+                      ${SFML_LIBRARIES}
+                      ${BOX2D_LIBRARIES}
+                      ${TGUI_LIBRARIES}
+                      ${GTEST_LIBRARIES})
 
 
 
