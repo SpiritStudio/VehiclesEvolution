@@ -7,11 +7,10 @@
 Physics::Physics()  : gravity_(0.0f, 9.81f),
                       world_(gravity_, false),
                       map_(world_) {
-    // Temporary
-    cars_.emplace_back(world_, b2Vec2(5.7f, 1.0f),
-                       b2Vec2(75.0f/60.0f, 25.0f/60.0f), b2Vec2(-75.0f/60.0f, 25.0f/60.0f));
-    cars_.emplace_back(world_, b2Vec2(3.7f, 4.0f),
-                       b2Vec2(75.0f/60.0f, 25.0f/60.0f), b2Vec2(-75.0f/60.0f, 25.0f/60.0f));
+    std::vector<CarParameters> cars_parameters;
+    cars_parameters.emplace_back();
+
+    makeCars(cars_parameters);
 }
 
 void Physics::update() {
@@ -39,7 +38,10 @@ void Physics::notifyCarsPositions() {
 }
 
 void Physics::makeCars(const std::vector<CarParameters> &cars_parameters) {
-
+    for (const auto &car_parameter : cars_parameters)
+    {
+        cars_.emplace_back(world_, b2Vec2(10.0f, 0.0f), car_parameter);
+    }
 }
 
 const std::vector<Car>& Physics::getCars() {

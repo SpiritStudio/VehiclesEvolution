@@ -4,12 +4,11 @@
 
 #include <Physics/Wheel.h>
 
-Wheel::Wheel(b2World &world, const b2Vec2 &position) {
+Wheel::Wheel(b2World &world, double radius) {
     body_def_.type = b2_dynamicBody;
-    body_def_.position.Set(position.x, position.y);
     body_ = world.CreateBody(&body_def_);
 
-    dynamic_circle_.m_radius = 0.5;
+    dynamic_circle_.m_radius = static_cast<float32>(radius);
 
     fixture_def_.shape = &dynamic_circle_;
 
@@ -34,6 +33,10 @@ b2Body* Wheel::getBody() {
 
 b2Vec2 Wheel::getPosition() const {
     return body_->GetPosition();
+}
+
+double Wheel::getRadius() const {
+    return dynamic_circle_.m_radius;
 }
 
 double Wheel::getAngle() const {

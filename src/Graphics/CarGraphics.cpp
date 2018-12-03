@@ -6,25 +6,30 @@
 
 #include <Graphics/CarGraphics.h>
 
-CarGraphics::CarGraphics() : wheel_front_position_offset_(75.0f, 25.0f),
-                             wheel_rear_position_offset_(-75.0f, 25.0f) {
-    car_body_graphics_.setPointCount(4);
-    car_body_graphics_.setOrigin(sf::Vector2f(75.0f, 25.0f));
-    car_body_graphics_.setPoint(0, sf::Vector2f(0.0f, 0.0f));
-    car_body_graphics_.setPoint(1, sf::Vector2f(150.0f, 0.0f));
-    car_body_graphics_.setPoint(2, sf::Vector2f(150.0f, 50.0f));
-    car_body_graphics_.setPoint(3, sf::Vector2f(0.0f, 50.0f));
+CarGraphics::CarGraphics(const std::vector<sf::Vector2f> &vertices,
+                         double front_wheel_radius, double rear_wheel_radius) {
+    car_body_graphics_.setPointCount(vertices.size());
+    car_body_graphics_.setOrigin(sf::Vector2f(0.0f, 0.0f));
+
+    size_t index = 0;
+    for (const auto &vertex : vertices)
+    {
+        car_body_graphics_.setPoint(index, vertex);
+        ++index;
+    }
+
     car_body_graphics_.setFillColor(sf::Color::Red);
     car_body_graphics_.setPosition(0.0f, 0.0f);
 
-    wheel_rear_.setRadius(30.0f);
-    wheel_rear_.setOrigin(30.0f, 30.0f);
-    wheel_rear_.setPosition(wheel_rear_position_offset_);
+    auto rear_wheel_radius_f = static_cast<float>(rear_wheel_radius);
+    wheel_rear_.setRadius(rear_wheel_radius_f);
+    wheel_rear_.setOrigin(rear_wheel_radius_f, rear_wheel_radius_f);
     wheel_rear_.setFillColor(sf::Color::Green);
 
-    wheel_front_.setRadius(30.0f);
-    wheel_front_.setOrigin(30.0f, 30.0f);
-    wheel_front_.setPosition(wheel_front_position_offset_);
+    auto front_wheel_radius_f = static_cast<float>(front_wheel_radius);
+
+    wheel_front_.setRadius(front_wheel_radius_f);
+    wheel_front_.setOrigin(front_wheel_radius_f, front_wheel_radius_f);
     wheel_front_.setFillColor(sf::Color::Green);
 }
 
@@ -35,8 +40,6 @@ void CarGraphics::setPositionAndAngle(const sf::Vector2f &position, float angle)
 
 void CarGraphics::setPosition(const sf::Vector2f &position) {
     car_body_graphics_.setPosition(position);
-    wheel_front_.setPosition(position + wheel_front_position_offset_);
-    wheel_rear_.setPosition(position + wheel_rear_position_offset_);
 }
 
 void CarGraphics::setAngle(float angle) {

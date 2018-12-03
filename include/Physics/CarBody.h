@@ -5,15 +5,18 @@
 #ifndef VEHICLESEVOLUTION_CARBODY_H
 #define VEHICLESEVOLUTION_CARBODY_H
 
+#include <vector>
+
 #include <Box2D/Box2D.h>
 
 class CarBody {
 
 public:
-    CarBody(b2World &world, const b2Vec2 &position);
+    CarBody(b2World &world, const b2Vec2 &position, const std::vector<b2Vec2> &vertices);
 
     b2Vec2 getPosition() const;
     double getAngle() const;
+    std::vector<b2Vec2> getPolygon() const;
 
     b2Body* getBody();
 

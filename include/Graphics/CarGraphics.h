@@ -11,7 +11,7 @@
 class CarGraphics : public sf::Drawable {
 
 public:
-    CarGraphics();
+    CarGraphics(const std::vector<sf::Vector2f> &vertices, double front_wheel_radius, double rear_wheel_radius);
 
     void setPositionAndAngle(const sf::Vector2f &position, float angle);
     void setFrontWheelPosition(const sf::Vector2f &position);
@@ -27,9 +27,6 @@ private:
     sf::ConvexShape car_body_graphics_;
     sf::CircleShape wheel_rear_;
     sf::CircleShape wheel_front_;
-
-    sf::Vector2f wheel_rear_position_offset_;
-    sf::Vector2f wheel_front_position_offset_;
 
 };
 

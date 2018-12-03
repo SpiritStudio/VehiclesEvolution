@@ -4,16 +4,16 @@
 
 #include <Physics/Car.h>
 
-Car::Car(b2World &world, const b2Vec2 &position,
-         const b2Vec2 &front_wheel_offset, const b2Vec2 &rear_wheel_offset) : is_dead_(false),
-                                                   car_body_(world, position),
-                                                   front_wheel_(world, position + front_wheel_offset),
-                                                   rear_wheel_ (world, position + rear_wheel_offset) {
+Car::Car(b2World &world, const b2Vec2 &position, const CarParameters &car_parameters) :
+                                                                is_dead_(false),
+                                                                car_body_(world, position, car_parameters.car_body_),
+                                                                front_wheel_(world, car_parameters.front_wheel_radius_),
+                                                                rear_wheel_(world, car_parameters.rear_wheel_radius_) {
     front_joint_def_.bodyA = car_body_.getBody();
     front_joint_def_.bodyB = front_wheel_.getBody();
     front_joint_def_.collideConnected = false;
-    front_joint_def_.localAnchorA.Set(1.25f, 0.5f);
-    front_joint_def_.localAnchorB.Set(0, 0);
+    front_joint_def_.localAnchorA.Set(car_parameters.front_joint_.x, car_parameters.front_joint_.y);
+    front_joint_def_.localAnchorB.Set(0.0f, 0.0f);
     front_joint_def_.maxMotorTorque = 2.0f;
     front_joint_def_.motorSpeed = 10.0f;
     front_joint_def_.enableMotor = true;
@@ -23,7 +23,7 @@ Car::Car(b2World &world, const b2Vec2 &position,
     rear_joint_def_.bodyA = car_body_.getBody();
     rear_joint_def_.bodyB = rear_wheel_.getBody();
     rear_joint_def_.collideConnected = false;
-    rear_joint_def_.localAnchorA.Set(-1.25f, 0.5f);
+    rear_joint_def_.localAnchorA.Set(car_parameters.rear_joint_.x, car_parameters.rear_joint_.y);
     rear_joint_def_.localAnchorB.Set(0, 0);
     rear_joint_def_.maxMotorTorque = 400.0f;
     rear_joint_def_.motorSpeed = 10.0f;
@@ -42,6 +42,18 @@ b2Vec2 Car::getFrontWheelPosition() const {
 
 b2Vec2 Car::getRearWheelPosition() const {
     return rear_wheel_.getPosition();
+}
+
+double Car::getFrontWheelRadius() const {
+    return front_wheel_.getRadius();
+}
+
+double Car::getRearWheelRadius() const {
+    return rear_wheel_.getRadius();
+}
+
+std::vector<b2Vec2> Car::getCarBodyVertices() const {
+    return car_body_.getPolygon();
 }
 
 double Car::getAngle() const {

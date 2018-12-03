@@ -9,15 +9,19 @@
 
 #include <Physics/CarBody.h>
 #include <Physics/Wheel.h>
+#include <EvolutionaryAlgorithm/CarParameters.h>
 
 class Car {
 
 public:
-    Car(b2World &world, const b2Vec2 &position, const b2Vec2 &front_wheel_offset, const b2Vec2 &rear_wheel_offset);
+    Car(b2World &world, const b2Vec2 &position, const CarParameters &car_parameters);
 
     b2Vec2 getPosition() const;
     b2Vec2 getFrontWheelPosition() const;
     b2Vec2 getRearWheelPosition() const;
+    double getFrontWheelRadius() const;
+    double getRearWheelRadius() const;
+    std::vector<b2Vec2> getCarBodyVertices() const;
     double getAngle() const;
     bool isDead() const;
 

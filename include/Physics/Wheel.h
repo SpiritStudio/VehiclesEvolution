@@ -10,10 +10,12 @@
 class Wheel {
 
 public:
-    Wheel(b2World &world, const b2Vec2 &position);
+    Wheel(b2World &world, double radius);
 
     b2Vec2 getPosition() const;
     double getAngle() const;
+
+    double getRadius() const;
 
     b2Body* getBody();
 

@@ -4,7 +4,7 @@
 
 #include <Graphics/Graphics.h>
 
-Graphics::Graphics() : settings_(0, 0, 4),
+Graphics::Graphics() : settings_(0, 0, 8),
                        window_(sf::VideoMode(800, 600), "Vehicles Evolution Simulation", sf::Style::Default, settings_),
                        clock_() {
 
@@ -15,7 +15,17 @@ void Graphics::newCars(const std::vector<Car> &cars) {
 
     for (const auto &car : cars)
     {
-        cars_graphics_.emplace_back();
+        auto vertices = car.getCarBodyVertices();
+        std::vector<sf::Vector2f> sf_vertices;
+        sf_vertices.reserve(vertices.size());
+
+        for (auto &vertex : vertices)
+        {
+            sf_vertices.emplace_back(vertex.x * PIXELS_PER_METER_, vertex.y * PIXELS_PER_METER_);
+        }
+
+        cars_graphics_.emplace_back(sf_vertices, car.getFrontWheelRadius() * PIXELS_PER_METER_,
+                                                 car.getRearWheelRadius() * PIXELS_PER_METER_);
     }
 }
 
