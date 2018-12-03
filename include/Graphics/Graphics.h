@@ -9,17 +9,16 @@
 
 #include <iostream>
 
-#include <Physics/Physics.h>
-#include <Physics/PhysicsObserver.h>
-
 #include <Graphics/CarGraphics.h>
 #include <Graphics/MapGraphics.h>
+#include <Physics/Car.h>
+#include <Physics/Map.h>
 
 /**
  * Class implementing Singleton and Pseudo-Observer design patterns
  */
 
-class Graphics : public PhysicsObserver {
+class Graphics {
 
 public:
     Graphics(const Graphics&) = delete;
@@ -30,9 +29,9 @@ public:
         return graphicsInstance;
     }
 
-    void newCars(const std::vector<Car> &cars) override;
-    void newMap(const Map &map) override;
-    void newCarsPositions(const std::vector<Car> &cars) override;
+    void newCars(const std::vector<Car> &cars);
+    void newMap(const Map &map);
+    void newCarsPositions(const std::vector<Car> &cars);
 
     bool isWindowOpen() const;
     void handleEvents();

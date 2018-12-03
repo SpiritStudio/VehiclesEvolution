@@ -15,7 +15,7 @@ set(EXECUTABLE_NAME "VehiclesEvolution")
 
 add_executable(${EXECUTABLE_NAME}
         src/main.cpp src/Physics/Physics.cpp src/Physics/Car.cpp src/Physics/Map.cpp
-        src/EvolutionaryAlgorithm/CarParameters.cpp src/Graphics/Graphics.cpp src/Physics/PhysicsObserver.cpp
+        src/EvolutionaryAlgorithm/CarParameters.cpp src/Graphics/Graphics.cpp
         src/EvolutionaryAlgorithm/EvolutionaryAlgorithm.cpp src/Graphics/CarGraphics.cpp src/Graphics/MapGraphics.cpp
         src/Physics/CarBody.cpp src/Physics/Wheel.cpp)
 

@@ -26,16 +26,16 @@ bool Physics::allDead() {
     return false;
 }
 
-void Physics::notifyCars(PhysicsObserver &observer) {
-    observer.newCars(cars_);
+void Physics::notifyCars() {
+    Graphics::getInstance().newCars(cars_);
 }
 
-void Physics::notifyMap(PhysicsObserver &observer) {
-    observer.newMap(map_);
+void Physics::notifyMap() {
+    Graphics::getInstance().newMap(map_);
 }
 
-void Physics::notifyCarsPositions(PhysicsObserver &observer) {
-    observer.newCarsPositions(cars_);
+void Physics::notifyCarsPositions() {
+    Graphics::getInstance().newCarsPositions(cars_);
 }
 
 void Physics::makeCars(const std::vector<CarParameters> &cars_parameters) {

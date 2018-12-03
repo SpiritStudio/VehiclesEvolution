@@ -16,7 +16,7 @@
 // Project files
 #include <Physics/Car.h>
 #include <Physics/Map.h>
-#include <Physics/PhysicsObserver.h>
+#include <Graphics/Graphics.h>
 #include <EvolutionaryAlgorithm/CarParameters.h>
 
 
@@ -41,9 +41,9 @@ public:
 
     void makeCars(const std::vector<CarParameters> &cars_parameters);
 
-    void notifyCars(PhysicsObserver &observer);
-    void notifyMap(PhysicsObserver &observer);
-    void notifyCarsPositions(PhysicsObserver &observer);
+    void notifyCars();
+    void notifyMap();
+    void notifyCarsPositions();
 
     const std::vector<Car>& getCars();
     const Map& getMap();
