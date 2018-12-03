@@ -2,12 +2,16 @@
 // Created by SpiritStudio on 29.11.18.
 //
 
+#include <iostream>
+
 #include <Graphics/Graphics.h>
 
 Graphics::Graphics() : settings_(0, 0, 8),
-                       window_(sf::VideoMode(800, 600), "Vehicles Evolution Simulation", sf::Style::Default, settings_),
+                       view_(sf::FloatRect(0.f, 0.f, WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_)),
+                       window_(sf::VideoMode(WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_),
+                               "Vehicles Evolution Simulation", sf::Style::Default, settings_),
                        clock_() {
-
+    window_.setView(view_);
 }
 
 void Graphics::newCars(const std::vector<Car> &cars) {
@@ -78,7 +82,7 @@ void Graphics::handleEvents() {
 
 void Graphics::draw() {
     window_.clear();
-
+    followTheLeader();
     window_.draw(map_graphic_);
 
     for (const auto &car_graphics : cars_graphics_)
@@ -98,4 +102,17 @@ void Graphics::ensureConstantFrameRate() {
 
 void Graphics::restartClock() {
     time_ = clock_.restart();
+}
+
+void Graphics::followTheLeader() {
+    sf::Vector2f new_leader_position(std::numeric_limits<float>::lowest(), 0.0f);
+
+    for (const auto &car : cars_graphics_)
+    {
+        if (car.getPosition().x >= new_leader_position.x)
+            new_leader_position = car.getPosition();
+    }
+
+    view_.setCenter(new_leader_position);
+    window_.setView(view_);
 }

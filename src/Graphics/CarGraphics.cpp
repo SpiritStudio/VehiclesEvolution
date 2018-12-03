@@ -54,6 +54,10 @@ void CarGraphics::setRearWheelPosition(const sf::Vector2f &position) {
     wheel_rear_.setPosition(position);
 }
 
+const sf::Vector2f& CarGraphics::getPosition() const {
+    return car_body_graphics_.getPosition();
+}
+
 void CarGraphics::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(car_body_graphics_, states);
     target.draw(wheel_front_, states);

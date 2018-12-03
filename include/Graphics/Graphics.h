@@ -7,8 +7,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <iostream>
-
 #include <Graphics/CarGraphics.h>
 #include <Graphics/MapGraphics.h>
 #include <Physics/Car.h>
@@ -44,7 +42,11 @@ public:
 private:
     Graphics();
 
+    void followTheLeader();
+
     static constexpr float PIXELS_PER_METER_ = 60.0f;
+    static constexpr int WINDOW_WIDTH_PIXELS_ = 800;
+    static constexpr int WINDOW_HEIGHT_PIXELS_ = 600;
 
     std::vector<CarGraphics> cars_graphics_;
     MapGraphics map_graphic_;
@@ -53,6 +55,7 @@ private:
     sf::RenderWindow window_;
     sf::Clock clock_;
     sf::Time time_;
+    sf::View view_;
 
 };
 

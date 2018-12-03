@@ -17,6 +17,7 @@ public:
     void setFrontWheelPosition(const sf::Vector2f &position);
     void setRearWheelPosition(const sf::Vector2f &position);
 
+    const sf::Vector2f& getPosition() const;
 
 private:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
