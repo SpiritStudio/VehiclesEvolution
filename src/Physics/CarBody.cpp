@@ -24,7 +24,7 @@ CarBody::CarBody(b2World &world, const b2Vec2 &position, const std::vector<b2Vec
     fixture_def_.shape = &dynamic_box_;
 
     // Set the box density to be non-zero, so it will be dynamic.
-    fixture_def_.density = 0.2f;
+    fixture_def_.density = 2.0f;
 
     // Override the default friction.
     fixture_def_.friction = 0.1f;

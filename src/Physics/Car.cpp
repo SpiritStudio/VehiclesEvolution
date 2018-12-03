@@ -14,7 +14,7 @@ Car::Car(b2World &world, const b2Vec2 &position, const CarParameters &car_parame
     front_joint_def_.collideConnected = false;
     front_joint_def_.localAnchorA.Set(car_parameters.front_joint_.x, car_parameters.front_joint_.y);
     front_joint_def_.localAnchorB.Set(0.0f, 0.0f);
-    front_joint_def_.maxMotorTorque = 2.0f;
+    front_joint_def_.maxMotorTorque = 200.0f;
     front_joint_def_.motorSpeed = 10.0f;
     front_joint_def_.enableMotor = true;
 

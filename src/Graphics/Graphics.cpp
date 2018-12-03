@@ -36,14 +36,24 @@ void Graphics::newCars(const std::vector<Car> &cars) {
 void Graphics::newMap(const Map &map) {
     auto polyline = map.getPolyline();
 
-    map_graphic_.resetPolyline(polyline.size());
-
-    int i = 0;
-    for (const auto &vertex : polyline)
+    if (polyline.size() > 0)
     {
-        map_graphic_.setVertex(i, sf::Vector2f(PIXELS_PER_METER_ * vertex.x, PIXELS_PER_METER_ * vertex.y));
-        ++i;
+        // Needed to duplicate first vertex as the end, to make Map a closed ring
+
+        map_graphic_.resetPolyline(polyline.size() + 1);
+
+        int i = 0;
+
+        auto first_vertex = polyline.at(0);
+        for (const auto &vertex : polyline)
+        {
+            map_graphic_.setVertex(i, sf::Vector2f(PIXELS_PER_METER_ * vertex.x, PIXELS_PER_METER_ * vertex.y));
+            ++i;
+        }
+
+        map_graphic_.setVertex(i, sf::Vector2f(PIXELS_PER_METER_ * first_vertex.x, PIXELS_PER_METER_ * first_vertex.y));
     }
+
 }
 
 void Graphics::newCarsPositions(const std::vector<Car> &cars) {
