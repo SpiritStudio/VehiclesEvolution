@@ -11,7 +11,23 @@ include_directories(.)
 include_directories(..)
 include_directories(../include)
 
-# Link runTests with what we want to test and the GTest
-add_executable(runTests gtest.cpp)
+set(EXECUTABLE_NAME "runTests")
 
-target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
+add_executable(${EXECUTABLE_NAME} gtest.cpp ../src/Physics/Physics.cpp ../src/Physics/Car.cpp ../src/Physics/Map.cpp
+        ../src/EvolutionaryAlgorithm/CarParameters.cpp ../src/Graphics/Graphics.cpp
+        ../src/EvolutionaryAlgorithm/EvolutionaryAlgorithm.cpp ../src/Graphics/CarGraphics.cpp
+        ../src/Graphics/MapGraphics.cpp ../src/Physics/CarBody.cpp ../src/Physics/Wheel.cpp
+        ../src/Graphics/GraphicalUserInterface.cpp)
+
+set(SFML_LIBRARIES "${PROJECT_SOURCE_DIR}/../lib/libsfml-graphics.so"
+        "${PROJECT_SOURCE_DIR}/../lib/libsfml-window.so"
+        "${PROJECT_SOURCE_DIR}/../lib/libsfml-system.so"
+        "${PROJECT_SOURCE_DIR}/../lib/libsfml-audio.so"
+        "${PROJECT_SOURCE_DIR}/../lib/libsfml-network.so" )
+set(BOX2D_LIBRARIES "${PROJECT_SOURCE_DIR}/../lib/libBox2D.a")
+set(TGUI_LIBRARIES "${PROJECT_SOURCE_DIR}/../lib/libtgui.so")
+
+target_link_libraries(${EXECUTABLE_NAME}  ${GTEST_LIBRARIES} ${SFML_LIBRARIES}
+        ${BOX2D_LIBRARIES}
+        ${TGUI_LIBRARIES}
+        pthread)
