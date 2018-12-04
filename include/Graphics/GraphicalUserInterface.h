@@ -5,14 +5,18 @@
 #ifndef VEHICLESEVOLUTION_GRAPHICALUSERINTERFACE_H
 #define VEHICLESEVOLUTION_GRAPHICALUSERINTERFACE_H
 
+#include <string>
+
 #include <TGUI/TGUI.hpp>
 #include <SFML/Graphics.hpp>
 
 class GraphicalUserInterface {
 
 public:
-   explicit GraphicalUserInterface(sf::RenderWindow&);
-   bool handleEvent(sf::Event);
+   explicit GraphicalUserInterface() = default;
+   void setWindow(sf::RenderWindow &window);
+   void addButton(const std::string &text);
+   bool handleEvent(sf::Event &event);
    void draw();
 
 private:

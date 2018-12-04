@@ -10,9 +10,10 @@ Graphics::Graphics() : settings_(0, 0, 8),
                        view_(sf::FloatRect(0.f, 0.f, WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_)),
                        window_(sf::VideoMode(WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_),
                                "Vehicles Evolution Simulation", sf::Style::Default, settings_),
-                       gui_(window_),
                        clock_() {
     window_.setView(view_);
+    gui_.setWindow(window_);
+    gui_.addButton("Example button");
 }
 
 void Graphics::newCars(const std::vector<Car> &cars) {
@@ -37,7 +38,7 @@ void Graphics::newCars(const std::vector<Car> &cars) {
 void Graphics::newMap(const Map &map) {
     auto polyline = map.getPolyline();
 
-    if (polyline.size() > 0)
+    if (!polyline.empty())
     {
         // Needed to duplicate first vertex as the end, to make Map a closed ring
 

@@ -4,18 +4,19 @@
 
 #include <Graphics/GraphicalUserInterface.h>
 
-GraphicalUserInterface::GraphicalUserInterface(sf::RenderWindow &window) : gui_(window) {
-    // example of adding gui elements
-    auto button = tgui::Button::create("CLICK");
-    button->setSize({"50%", "16.67%"});
-    button->setPosition({"25%", "70%"});
-    gui_.add(button);
-//    example callback function connection
-//    button->connect("pressed", login, editBoxUsername, editBoxPassword);
+bool GraphicalUserInterface::handleEvent(sf::Event &event){
+    return gui_.handleEvent(event);
 }
 
-bool GraphicalUserInterface::handleEvent(sf::Event event){
-    return gui_.handleEvent(event);
+void GraphicalUserInterface::setWindow(sf::RenderWindow &window) {
+    gui_.setTarget(window);
+}
+
+void GraphicalUserInterface::addButton(const std::string &text) {
+    auto button = tgui::Button::create(text);
+    button->setSize({"20%", "5%"});
+    button->setPosition({"5%", "5%"});
+    gui_.add(button);
 }
 
 void GraphicalUserInterface::draw() {
