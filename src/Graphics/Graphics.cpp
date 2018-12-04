@@ -10,6 +10,7 @@ Graphics::Graphics() : settings_(0, 0, 8),
                        view_(sf::FloatRect(0.f, 0.f, WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_)),
                        window_(sf::VideoMode(WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_),
                                "Vehicles Evolution Simulation", sf::Style::Default, settings_),
+                       gui_(window_),
                        clock_() {
     window_.setView(view_);
 }
@@ -87,6 +88,8 @@ void Graphics::handleEvents() {
     {
         if (event.type == sf::Event::Closed)
             window_.close();
+
+        gui_.handleEvent(event);
     }
 }
 
@@ -99,6 +102,8 @@ void Graphics::draw() {
     {
         window_.draw(car_graphics);
     }
+
+    gui_.draw();
 
     window_.display();
 }

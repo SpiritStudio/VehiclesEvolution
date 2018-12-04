@@ -5,10 +5,14 @@
 #ifndef VEHICLESEVOLUTION_GRAPHICS_H
 #define VEHICLESEVOLUTION_GRAPHICS_H
 
+
+#include <iostream>
+
 #include <SFML/Graphics.hpp>
 
 #include <Graphics/CarGraphics.h>
 #include <Graphics/MapGraphics.h>
+#include <Graphics/GraphicalUserInterface.h>
 #include <Physics/Car.h>
 #include <Physics/Map.h>
 
@@ -50,6 +54,7 @@ private:
 
     std::vector<CarGraphics> cars_graphics_;
     MapGraphics map_graphic_;
+    GraphicalUserInterface gui_;
 
     sf::ContextSettings settings_;
     sf::RenderWindow window_;

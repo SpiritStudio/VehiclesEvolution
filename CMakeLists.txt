@@ -17,7 +17,8 @@ add_executable(${EXECUTABLE_NAME}
         src/main.cpp src/Physics/Physics.cpp src/Physics/Car.cpp src/Physics/Map.cpp
         src/EvolutionaryAlgorithm/CarParameters.cpp src/Graphics/Graphics.cpp
         src/EvolutionaryAlgorithm/EvolutionaryAlgorithm.cpp src/Graphics/CarGraphics.cpp src/Graphics/MapGraphics.cpp
-        src/Physics/CarBody.cpp src/Physics/Wheel.cpp)
+        src/Physics/CarBody.cpp src/Physics/Wheel.cpp src/Graphics/GraphicalUserInterface.cpp
+        include/Graphics/GraphicalUserInterface.h)
 
 set(SFML_LIBRARIES "${PROJECT_SOURCE_DIR}/lib/libsfml-graphics.so"
                    "${PROJECT_SOURCE_DIR}/lib/libsfml-window.so"
