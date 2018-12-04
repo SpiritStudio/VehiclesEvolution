@@ -2,7 +2,7 @@
 # Created by SpiritStudio on 28.11.18.
 #
 
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 2.6)
 project(VehiclesEvolution)
 
 include_directories(.)
