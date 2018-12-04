@@ -38,7 +38,7 @@ public:
     bool isWindowOpen() const;
     void handleEvents();
 
-    void ensureConstantFrameRate();
+    void ensureConstantFrameRate(const int frameRate);
     void restartClock();
 
     void draw();

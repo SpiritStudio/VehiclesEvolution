@@ -31,7 +31,7 @@ int main()
         Physics::getInstance().notifyCarsPositions();
 
         Graphics::getInstance().draw();
-        Graphics::getInstance().ensureConstantFrameRate();
+        Graphics::getInstance().ensureConstantFrameRate(60);
     }
 
     return 0;

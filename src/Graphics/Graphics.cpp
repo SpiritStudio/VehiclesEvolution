@@ -108,9 +108,9 @@ void Graphics::draw() {
     window_.display();
 }
 
-void Graphics::ensureConstantFrameRate() {
+void Graphics::ensureConstantFrameRate(const int frameRate) {
     time_ = clock_.restart();
-    sf::Time time_for_sleep = sf::milliseconds(17) - time_;
+    sf::Time time_for_sleep = sf::milliseconds(static_cast<int>(1000.0f / static_cast<float>(frameRate))) - time_;
     sf::sleep(time_for_sleep);
     time_ = clock_.restart();
 }
