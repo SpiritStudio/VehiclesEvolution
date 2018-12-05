@@ -8,8 +8,6 @@ project(VehiclesEvolution)
 include_directories(.)
 include_directories(include)
 
-add_subdirectory(test)
-
 set(CMAKE_CXX_STANDARD 14)
 
 # Define sources and executable
