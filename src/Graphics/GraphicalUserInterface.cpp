@@ -4,12 +4,24 @@
 
 #include <Graphics/GraphicalUserInterface.h>
 
+GraphicalUserInterface::GraphicalUserInterface(sf::RenderWindow &window, const int interface_width,
+                                               const int interface_height)
+    : window_(window), interface_width_(interface_width), interface_height_(interface_height) {
+    background_.setSize(sf::Vector2f(interface_width_, interface_height_));
+    background_.setPosition(sf::Vector2f(0.0f, 0.0f));
+    background_.setFillColor(sf::Color::Blue);
+}
+
 bool GraphicalUserInterface::handleEvent(sf::Event &event){
     return gui_.handleEvent(event);
 }
 
-void GraphicalUserInterface::setWindow(sf::RenderWindow &window) {
-    gui_.setTarget(window);
+void GraphicalUserInterface::setWindow() {
+    gui_.setTarget(window_);
+}
+
+void GraphicalUserInterface::setView(sf::View &view) {
+    gui_.setView(view);
 }
 
 void GraphicalUserInterface::addButton(const std::string &text) {
@@ -20,5 +32,10 @@ void GraphicalUserInterface::addButton(const std::string &text) {
 }
 
 void GraphicalUserInterface::draw() {
+    window_.draw(background_);
     gui_.draw();
+}
+
+const int GraphicalUserInterface::getInterfaceWidth() const {
+    return interface_width_;
 }

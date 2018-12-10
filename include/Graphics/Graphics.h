@@ -49,8 +49,9 @@ private:
     void followTheLeader();
 
     static constexpr float PIXELS_PER_METER_ = 60.0f;
-    static constexpr int WINDOW_WIDTH_PIXELS_ = 800;
+    static constexpr int WINDOW_WIDTH_PIXELS_ = 1000;
     static constexpr int WINDOW_HEIGHT_PIXELS_ = 600;
+    static constexpr int INTERFACE_WIDTH_PIXELS_ = 300;
 
     std::vector<CarGraphics> cars_graphics_;
     MapGraphics map_graphic_;
@@ -60,7 +61,7 @@ private:
     sf::RenderWindow window_;
     sf::Clock clock_;
     sf::Time time_;
-    sf::View view_;
+    sf::View view_action_, view_gui_;
 
 };
 

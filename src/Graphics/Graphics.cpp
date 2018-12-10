@@ -7,17 +7,21 @@
 #include <Graphics/Graphics.h>
 
 Graphics::Graphics() : settings_(0, 0, 8),
-                       view_(sf::FloatRect(0.f, 0.f, WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_)),
+                       view_action_(sf::FloatRect(0.f, 0.f, WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_)),
+                       view_gui_(view_action_),
                        window_(sf::VideoMode(WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_),
                                "Vehicles Evolution Simulation", sf::Style::Default, settings_),
+                       gui_(window_, INTERFACE_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_),
                        clock_() {
-    window_.setView(view_);
-    gui_.setWindow(window_);
+    window_.setView(view_action_);
+    gui_.setWindow();
     gui_.addButton("Example button");
 }
 
 void Graphics::newCars(const std::vector<Car> &cars) {
     cars_graphics_.clear();
+
+    // TODO: Wrap sf:: and b2:: convert methods
 
     for (const auto &car : cars)
     {
@@ -90,6 +94,14 @@ void Graphics::handleEvents() {
         if (event.type == sf::Event::Closed)
             window_.close();
 
+        if (event.type == sf::Event::Resized)
+        {
+//            TODO: Need to resolve issue with gui resizing!
+//            auto visible_area = sf::Vector2f(event.size.width, event.size.height);
+//            view_gui_.setSize(visible_area);
+//            view_action_.setSize(visible_area);
+//            gui_.setView(view_gui_);
+        }
         gui_.handleEvent(event);
     }
 }
@@ -104,6 +116,7 @@ void Graphics::draw() {
         window_.draw(car_graphics);
     }
 
+    window_.setView(view_gui_);
     gui_.draw();
 
     window_.display();
@@ -129,6 +142,7 @@ void Graphics::followTheLeader() {
             new_leader_position = car.getPosition();
     }
 
-    view_.setCenter(new_leader_position);
-    window_.setView(view_);
+    view_action_.setCenter(new_leader_position -
+                           sf::Vector2f(static_cast<float>(gui_.getInterfaceWidth()), 0.0f) / 2.0f);
+    window_.setView(view_action_);
 }

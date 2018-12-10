@@ -13,15 +13,21 @@
 class GraphicalUserInterface {
 
 public:
-   explicit GraphicalUserInterface() = default;
-   void setWindow(sf::RenderWindow &window);
-   void addButton(const std::string &text);
-   bool handleEvent(sf::Event &event);
-   void draw();
+    explicit GraphicalUserInterface(sf::RenderWindow &window, const int interface_width, const int interface_height);
+    void setWindow();
+    void setView(sf::View &view);
+    void addButton(const std::string &text);
+    bool handleEvent(sf::Event &event);
+    void draw();
+
+    const int getInterfaceWidth() const;
 
 private:
-    tgui::Gui gui_;
+    const int interface_width_, interface_height_;
 
+    sf::RenderWindow &window_;
+    tgui::Gui gui_;
+    sf::RectangleShape background_;
 };
 
 
