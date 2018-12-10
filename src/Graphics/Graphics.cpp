@@ -16,7 +16,7 @@ Graphics::Graphics() : settings_(0, 0, 8),
                        background_color_(51,204,153) {
     window_.setView(view_action_);
     gui_.setWindow();
-    gui_.addButton("Example button");
+    gui_.addButtons();
 }
 
 void Graphics::newCars(const std::vector<Car> &cars) {

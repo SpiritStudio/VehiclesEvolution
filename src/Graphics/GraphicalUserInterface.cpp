@@ -26,11 +26,18 @@ void GraphicalUserInterface::setView(sf::View &view) {
     gui_.setView(view);
 }
 
-void GraphicalUserInterface::addButton(const std::string &text) {
+void GraphicalUserInterface::addButtons() {
+    addButton("Exit", [&](){ window_.close(); });
+
+}
+
+void GraphicalUserInterface::addButton(const std::string &text, std::function<void()> function) {
     auto button = tgui::Button::create(text);
     button->setSize(200, 40);
     button->setPosition(50, 50);
     gui_.add(button);
+
+    button->connect("pressed", function);
 }
 
 void GraphicalUserInterface::draw() {

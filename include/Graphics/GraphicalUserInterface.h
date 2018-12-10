@@ -6,6 +6,7 @@
 #define VEHICLESEVOLUTION_GRAPHICALUSERINTERFACE_H
 
 #include <string>
+#include <functional>
 
 #include <TGUI/TGUI.hpp>
 #include <SFML/Graphics.hpp>
@@ -16,13 +17,15 @@ public:
     explicit GraphicalUserInterface(sf::RenderWindow &window, const int interface_width, const int interface_height);
     void setWindow();
     void setView(sf::View &view);
-    void addButton(const std::string &text);
+    void addButtons();
     bool handleEvent(sf::Event &event);
     void draw();
 
     const int getInterfaceWidth() const;
 
 private:
+    void addButton(const std::string &text, std::function<void()> function);
+
     const int interface_width_, interface_height_;
 
     const sf::Color background_color_;
