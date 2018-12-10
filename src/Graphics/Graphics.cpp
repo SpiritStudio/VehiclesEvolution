@@ -96,11 +96,11 @@ void Graphics::handleEvents() {
 
         if (event.type == sf::Event::Resized)
         {
-//            TODO: Need to resolve issue with gui resizing!
-//            auto visible_area = sf::Vector2f(event.size.width, event.size.height);
-//            view_gui_.setSize(visible_area);
-//            view_action_.setSize(visible_area);
-//            gui_.setView(view_gui_);
+            auto visible_area = sf::Vector2f(event.size.width, event.size.height);
+            view_gui_.setSize(visible_area);
+            view_gui_.setCenter(event.size.width / 2.0f, event.size.height / 2.0f);
+            view_action_.setSize(visible_area);
+            gui_.setView(view_gui_);
         }
         gui_.handleEvent(event);
     }

@@ -21,13 +21,14 @@ void GraphicalUserInterface::setWindow() {
 }
 
 void GraphicalUserInterface::setView(sf::View &view) {
+    background_.setSize(sf::Vector2f(interface_width_, view.getSize().y));
     gui_.setView(view);
 }
 
 void GraphicalUserInterface::addButton(const std::string &text) {
     auto button = tgui::Button::create(text);
-    button->setSize({"20%", "5%"});
-    button->setPosition({"5%", "5%"});
+    button->setSize(150, 50);
+    button->setPosition(50, 50);
     gui_.add(button);
 }
 
