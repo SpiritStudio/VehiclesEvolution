@@ -15,6 +15,8 @@ GraphicalUserInterface::GraphicalUserInterface(sf::RenderWindow &window, const i
 }
 
 bool GraphicalUserInterface::handleEvent(sf::Event &event){
+    //if (tgui::CheckBox::isChecked())
+
     return gui_.handleEvent(event);
 }
 
@@ -27,10 +29,11 @@ void GraphicalUserInterface::setView(sf::View &view) {
     gui_.setView(view);
 }
 
-void GraphicalUserInterface::addButtons() {
+void GraphicalUserInterface::addWidgets() {
     auto button = addButton(sf::Vector2f(50.0f, 50.0f), "Exit");
     button->connect("pressed", [&](){ window_.close(); });
 
+    // TODO: Change make functions into making from Evolutional Algorithm
     std::vector<CarParameters> params_example;
     params_example.emplace_back();
 
@@ -40,6 +43,10 @@ void GraphicalUserInterface::addButtons() {
     CarParameters param_example;
     button = addButton(sf::Vector2f(50.0f, 250.0f), "Add new car");
     button->connect("pressed", &Physics::makeCar, &Physics::getInstance(), param_example);
+
+    auto checkbox = addCheckbox(sf::Vector2f(50.0f, 350.0f), "Follow the leader");
+    checkbox->connect("checked", [&](){ follow_the_leader_checked_ = true; });
+    checkbox->connect("unchecked", [&](){ follow_the_leader_checked_ = false; });
 }
 
 std::shared_ptr<tgui::Button> GraphicalUserInterface::addButton(const sf::Vector2f &position, const std::string &text) {
@@ -52,6 +59,17 @@ std::shared_ptr<tgui::Button> GraphicalUserInterface::addButton(const sf::Vector
 }
 
 
+std::shared_ptr<tgui::CheckBox> GraphicalUserInterface::addCheckbox(const sf::Vector2f &position,
+                                                                    const std::string &text) {
+    auto checkbox = tgui::CheckBox::create(text);
+    checkbox->setSize(20, 20);
+    checkbox->setPosition(position);
+    gui_.add(checkbox);
+
+    return checkbox;
+}
+
+
 void GraphicalUserInterface::draw() {
     window_.draw(background_);
     gui_.draw();
@@ -59,4 +77,8 @@ void GraphicalUserInterface::draw() {
 
 const int GraphicalUserInterface::getInterfaceWidth() const {
     return interface_width_;
+}
+
+const bool GraphicalUserInterface::doFollowTheLeader() const {
+    return follow_the_leader_checked_;
 }

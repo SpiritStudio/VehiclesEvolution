@@ -18,14 +18,15 @@ public:
     explicit GraphicalUserInterface(sf::RenderWindow &window, const int interface_width, const int interface_height);
     void setWindow();
     void setView(sf::View &view);
-    void addButtons();
+    void addWidgets();
     bool handleEvent(sf::Event &event);
     void draw();
 
     const int getInterfaceWidth() const;
-
+    const bool doFollowTheLeader() const;
 private:
     std::shared_ptr<tgui::Button> addButton(const sf::Vector2f &position, const std::string &text);
+    std::shared_ptr<tgui::CheckBox> addCheckbox(const sf::Vector2f &position, const std::string &text);
 
     const int interface_width_, interface_height_;
 
@@ -34,6 +35,8 @@ private:
     sf::RenderWindow &window_;
     tgui::Gui gui_;
     sf::RectangleShape background_;
+
+    bool follow_the_leader_checked_;
 };
 
 

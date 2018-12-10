@@ -16,7 +16,7 @@ Graphics::Graphics() : settings_(0, 0, 8),
                        background_color_(51,204,153) {
     window_.setView(view_action_);
     gui_.setWindow();
-    gui_.addButtons();
+    gui_.addWidgets();
 }
 
 void Graphics::newCars(const std::vector<Car> &cars) {
@@ -135,15 +135,18 @@ void Graphics::restartClock() {
 }
 
 void Graphics::followTheLeader() {
-    sf::Vector2f new_leader_position(std::numeric_limits<float>::lowest(), 0.0f);
-
-    for (const auto &car : cars_graphics_)
+    if (gui_.doFollowTheLeader())
     {
-        if (car.getPosition().x >= new_leader_position.x)
-            new_leader_position = car.getPosition();
+        sf::Vector2f new_leader_position(std::numeric_limits<float>::lowest(), 0.0f);
+
+        for (const auto &car : cars_graphics_) {
+            if (car.getPosition().x >= new_leader_position.x)
+                new_leader_position = car.getPosition();
+        }
+
+        view_action_.setCenter(new_leader_position -
+                               sf::Vector2f(static_cast<float>(gui_.getInterfaceWidth()), 0.0f) / 2.0f);
     }
 
-    view_action_.setCenter(new_leader_position -
-                           sf::Vector2f(static_cast<float>(gui_.getInterfaceWidth()), 0.0f) / 2.0f);
     window_.setView(view_action_);
 }
