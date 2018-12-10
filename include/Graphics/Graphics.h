@@ -53,6 +53,8 @@ private:
     static constexpr int WINDOW_HEIGHT_PIXELS_ = 600;
     static constexpr int INTERFACE_WIDTH_PIXELS_ = 300;
 
+    const sf::Color background_color_;
+
     std::vector<CarGraphics> cars_graphics_;
     MapGraphics map_graphic_;
     GraphicalUserInterface gui_;

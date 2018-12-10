@@ -25,6 +25,8 @@ public:
 private:
     const int interface_width_, interface_height_;
 
+    const sf::Color background_color_;
+
     sf::RenderWindow &window_;
     tgui::Gui gui_;
     sf::RectangleShape background_;

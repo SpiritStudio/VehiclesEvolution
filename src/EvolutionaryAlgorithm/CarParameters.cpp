@@ -4,7 +4,7 @@
 
 #include <EvolutionaryAlgorithm/CarParameters.h>
 
-CarParameters::CarParameters() : front_wheel_radius_(1.0f),
+CarParameters::CarParameters() : front_wheel_radius_(0.5f),
                                  rear_wheel_radius_(0.5f),
                                  front_joint_(1.25f, 0.5f),
                                  rear_joint_(-1.25f, 0.5f) {

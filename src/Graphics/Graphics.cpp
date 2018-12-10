@@ -12,7 +12,8 @@ Graphics::Graphics() : settings_(0, 0, 8),
                        window_(sf::VideoMode(WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_),
                                "Vehicles Evolution Simulation", sf::Style::Default, settings_),
                        gui_(window_, INTERFACE_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_),
-                       clock_() {
+                       clock_(),
+                       background_color_(51,204,153) {
     window_.setView(view_action_);
     gui_.setWindow();
     gui_.addButton("Example button");
@@ -107,7 +108,7 @@ void Graphics::handleEvents() {
 }
 
 void Graphics::draw() {
-    window_.clear();
+    window_.clear(background_color_);
     followTheLeader();
     window_.draw(map_graphic_);
 

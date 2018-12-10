@@ -6,10 +6,11 @@
 
 GraphicalUserInterface::GraphicalUserInterface(sf::RenderWindow &window, const int interface_width,
                                                const int interface_height)
-    : window_(window), interface_width_(interface_width), interface_height_(interface_height) {
+    : window_(window), interface_width_(interface_width), interface_height_(interface_height),
+      background_color_(255, 153, 0, 50) {
     background_.setSize(sf::Vector2f(interface_width_, interface_height_));
     background_.setPosition(sf::Vector2f(0.0f, 0.0f));
-    background_.setFillColor(sf::Color::Blue);
+    background_.setFillColor(background_color_);
 }
 
 bool GraphicalUserInterface::handleEvent(sf::Event &event){
@@ -27,7 +28,7 @@ void GraphicalUserInterface::setView(sf::View &view) {
 
 void GraphicalUserInterface::addButton(const std::string &text) {
     auto button = tgui::Button::create(text);
-    button->setSize(150, 50);
+    button->setSize(200, 40);
     button->setPosition(50, 50);
     gui_.add(button);
 }

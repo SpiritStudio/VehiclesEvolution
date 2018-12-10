@@ -25,6 +25,8 @@ private:
     void setPosition(const sf::Vector2f &position);
     void setAngle(float angle);
 
+    const sf::Color car_body_color_, wheel_color_;
+
     sf::ConvexShape car_body_graphics_;
     sf::CircleShape wheel_rear_;
     sf::CircleShape wheel_front_;
