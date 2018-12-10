@@ -16,7 +16,7 @@ Wheel::Wheel(b2World &world, double radius) {
     fixture_def_.density = 1.0f;
 
     // Override the default friction.
-    fixture_def_.friction = 0.1f;
+    fixture_def_.friction = 0.5f;
 
     fixture_def_.restitution = 0.2;
 

@@ -18,8 +18,9 @@ public:
 
 private:
     b2BodyDef body_def_;
-    b2PolygonShape map_shape_;
-    b2FixtureDef fixture_def_;
+    std::vector<b2PolygonShape> map_shape_;
+    std::vector<b2FixtureDef> fixture_def_;
+    std::vector<b2Vec2> polyline_;
     b2Body *body_;
 
 };

@@ -40,14 +40,14 @@ void Physics::makeCars(const std::vector<CarParameters> &cars_parameters) {
 
     for (const auto &car_parameters : cars_parameters)
     {
-        cars_.emplace_back(world_, b2Vec2(10.0f, 0.0f), car_parameters);
+        cars_.emplace_back(world_, b2Vec2(10.0f, 3.0f), car_parameters);
     }
 
     notifyCars();
 }
 
 void Physics::makeCar(const CarParameters &car_parameters) {
-    cars_.emplace_back(world_, b2Vec2(10.0f, 0.0f), car_parameters);
+    cars_.emplace_back(world_, b2Vec2(10.0f, 3.0f), car_parameters);
 
     notifyCars();
 }
