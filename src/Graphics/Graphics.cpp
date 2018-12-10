@@ -135,7 +135,7 @@ void Graphics::restartClock() {
 }
 
 void Graphics::followTheLeader() {
-    if (gui_.doFollowTheLeader())
+    if (gui_.doFollowTheLeader() && !cars_graphics_.empty())
     {
         sf::Vector2f new_leader_position(std::numeric_limits<float>::lowest(), 0.0f);
 
