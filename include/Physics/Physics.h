@@ -40,6 +40,7 @@ public:
     bool allDead();
 
     void makeCars(const std::vector<CarParameters> &cars_parameters);
+    void makeCar(const CarParameters &car_parameters);
 
     void notifyCars();
     void notifyMap();
@@ -50,8 +51,6 @@ public:
 
 private:
     Physics();
-
-    const Car& makeCar(const CarParameters &car_parameters);
 
     b2Vec2 gravity_;
     b2World world_;

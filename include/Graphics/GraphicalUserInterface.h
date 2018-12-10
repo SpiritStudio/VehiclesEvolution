@@ -10,6 +10,7 @@
 
 #include <TGUI/TGUI.hpp>
 #include <SFML/Graphics.hpp>
+#include <include/EvolutionaryAlgorithm/CarParameters.h>
 
 class GraphicalUserInterface {
 
@@ -24,7 +25,7 @@ public:
     const int getInterfaceWidth() const;
 
 private:
-    void addButton(const std::string &text, std::function<void()> function);
+    std::shared_ptr<tgui::Button> addButton(const sf::Vector2f &position, const std::string &text);
 
     const int interface_width_, interface_height_;
 

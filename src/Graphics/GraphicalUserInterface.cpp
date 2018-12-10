@@ -3,6 +3,7 @@
 //
 
 #include <Graphics/GraphicalUserInterface.h>
+#include <Physics/Physics.h>
 
 GraphicalUserInterface::GraphicalUserInterface(sf::RenderWindow &window, const int interface_width,
                                                const int interface_height)
@@ -27,18 +28,29 @@ void GraphicalUserInterface::setView(sf::View &view) {
 }
 
 void GraphicalUserInterface::addButtons() {
-    addButton("Exit", [&](){ window_.close(); });
+    auto button = addButton(sf::Vector2f(50.0f, 50.0f), "Exit");
+    button->connect("pressed", [&](){ window_.close(); });
 
+    std::vector<CarParameters> params_example;
+    params_example.emplace_back();
+
+    button = addButton(sf::Vector2f(50.0f, 150.0f), "Make new generation");
+    button->connect("pressed", &Physics::makeCars, &Physics::getInstance(), params_example);
+
+    CarParameters param_example;
+    button = addButton(sf::Vector2f(50.0f, 250.0f), "Add new car");
+    button->connect("pressed", &Physics::makeCar, &Physics::getInstance(), param_example);
 }
 
-void GraphicalUserInterface::addButton(const std::string &text, std::function<void()> function) {
+std::shared_ptr<tgui::Button> GraphicalUserInterface::addButton(const sf::Vector2f &position, const std::string &text) {
     auto button = tgui::Button::create(text);
     button->setSize(200, 40);
-    button->setPosition(50, 50);
+    button->setPosition(position);
     gui_.add(button);
 
-    button->connect("pressed", function);
+    return button;
 }
+
 
 void GraphicalUserInterface::draw() {
     window_.draw(background_);
