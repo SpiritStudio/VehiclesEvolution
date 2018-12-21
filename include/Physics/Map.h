@@ -17,6 +17,8 @@ public:
     std::vector<b2Vec2> getPolyline() const;
 
 private:
+    void loadFromFile(std::string filename);
+
     b2BodyDef body_def_;
     std::vector<b2PolygonShape> map_shape_;
     std::vector<b2FixtureDef> fixture_def_;

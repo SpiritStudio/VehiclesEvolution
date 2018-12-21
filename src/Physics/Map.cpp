@@ -3,11 +3,11 @@
 //
 
 #include <vector>
+#include <fstream>
 
 #include <mapbox/earcut.h>
 
 #include <Physics/Map.h>
-#include <iostream>
 
 
 Map::Map(b2World &world) {
@@ -15,19 +15,9 @@ Map::Map(b2World &world) {
 
     body_ = world.CreateBody(&body_def_);
     // TODO WRAP TRIANGULATION INTO SEPARATE METHOD
-    polyline_.emplace_back(0 / 60.0f, 400.0f / 60.0f);
-    polyline_.emplace_back(50.0f / 60.0f, 370.0f / 60.0f);
-    polyline_.emplace_back(100.0f / 60.0f, 350.0f / 60.0f);
-    polyline_.emplace_back(400.0f / 60.0f, 300.0f / 60.0f);
-    polyline_.emplace_back(500.0f / 60.0f, 400.0f / 60.0f);
-    polyline_.emplace_back(550.0f / 60.0f, 380.0f / 60.0f);
-    polyline_.emplace_back(600.0f / 60.0f, 400.0f / 60.0f);
-    polyline_.emplace_back(700.0f / 60.0f, 350.0f / 60.0f);
-    polyline_.emplace_back(900.0f / 60.0f, 370.0f / 60.0f);
-    polyline_.emplace_back(1100.0f / 60.0f, 250.0f / 60.0f);
-    polyline_.emplace_back(1600.0f / 60.0f, 300.0f / 60.0f);
-    polyline_.emplace_back(1600.0f / 60.0f, 800.0f / 60.0f);
-    polyline_.emplace_back(0.0f, 800.0f / 60.0f);
+    // MAYBE PARAMETERS - POLYLINE, RETURNS VECTOR OF FIXTURE_DEF?
+    // TODO READ MAP FROM FILE
+    loadFromFile("data/map.txt");
 
     // The number type to use for tessellation
     using Coord = double;
@@ -91,7 +81,19 @@ std::vector<b2Vec2> Map::getPolyline() const {
     return polyline_;
 }
 
-
 double Map::getAngle() const {
     return body_->GetAngle();
+}
+
+void Map::loadFromFile(std::string filename) {
+    std::ifstream input(filename);
+
+    polyline_.clear();
+
+    double x, y;
+
+    while (input >> x >> y)
+    {
+        polyline_.emplace_back(x, y);
+    }
 }
