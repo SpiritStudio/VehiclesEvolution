@@ -2,8 +2,10 @@
 // Created by SpiritStudio on 04.12.18.
 //
 
-#include <gtest/gtest.h>
 #include <math.h>
+
+#include <gtest/gtest.h>
+
 #include <Physics/Physics.h>
 
 TEST(ExamplePhysicsTest, Physics) {

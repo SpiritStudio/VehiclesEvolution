@@ -14,8 +14,8 @@ class CarBody {
 public:
     CarBody(b2World &world, const b2Vec2 &position, const std::vector<b2Vec2> &vertices);
 
-    b2Vec2 getPosition() const;
-    double getAngle() const;
+    const b2Vec2& getPosition() const;
+    const double getAngle() const;
     std::vector<b2Vec2> getPolygon() const;
 
     b2Body* getBody();

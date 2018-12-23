@@ -21,9 +21,7 @@ add_executable(${EXECUTABLE_NAME}
 
 set(SFML_LIBRARIES "${PROJECT_SOURCE_DIR}/lib/libsfml-graphics.so"
                    "${PROJECT_SOURCE_DIR}/lib/libsfml-window.so"
-                   "${PROJECT_SOURCE_DIR}/lib/libsfml-system.so"
-                   "${PROJECT_SOURCE_DIR}/lib/libsfml-audio.so"
-                   "${PROJECT_SOURCE_DIR}/lib/libsfml-network.so" )
+                   "${PROJECT_SOURCE_DIR}/lib/libsfml-system.so")
 set(BOX2D_LIBRARIES "${PROJECT_SOURCE_DIR}/lib/libBox2D.a")
 set(TGUI_LIBRARIES "${PROJECT_SOURCE_DIR}/lib/libtgui.so")
 set(GTEST_LIBRARIES "${PROJECT_SOURCE_DIR}/lib/libgtest.a"

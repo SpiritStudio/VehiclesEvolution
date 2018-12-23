@@ -12,9 +12,9 @@ class Map {
 public:
     Map(b2World &world);
 
-    b2Vec2 getPosition() const;
-    double getAngle() const;
-    std::vector<b2Vec2> getPolyline() const;
+    const b2Vec2& getPosition() const;
+    const double getAngle() const;
+    const std::vector<b2Vec2>& getPolyline() const;
 
 private:
     void loadFromFile(std::string filename);

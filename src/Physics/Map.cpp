@@ -9,7 +9,6 @@
 
 #include <Physics/Map.h>
 
-
 Map::Map(b2World &world) {
     body_def_.position.Set(0.0f, 0.0f);
 
@@ -73,15 +72,15 @@ Map::Map(b2World &world) {
     }
 }
 
-b2Vec2 Map::getPosition() const {
+const b2Vec2& Map::getPosition() const {
     return body_->GetPosition();
 }
 
-std::vector<b2Vec2> Map::getPolyline() const {
+const std::vector<b2Vec2>& Map::getPolyline() const {
     return polyline_;
 }
 
-double Map::getAngle() const {
+const double Map::getAngle() const {
     return body_->GetAngle();
 }
 

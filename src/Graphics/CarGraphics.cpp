@@ -35,15 +35,7 @@ CarGraphics::CarGraphics(const std::vector<sf::Vector2f> &vertices,
 }
 
 void CarGraphics::setPositionAndAngle(const sf::Vector2f &position, float angle) {
-    setPosition(position);
-    setAngle(angle);
-}
-
-void CarGraphics::setPosition(const sf::Vector2f &position) {
     car_body_graphics_.setPosition(position);
-}
-
-void CarGraphics::setAngle(float angle) {
     car_body_graphics_.setRotation(angle);
 }
 

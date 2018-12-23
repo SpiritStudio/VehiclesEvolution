@@ -5,14 +5,11 @@
 #ifndef VEHICLESEVOLUTION_MAPGRAPHICS_H
 #define VEHICLESEVOLUTION_MAPGRAPHICS_H
 
-
 #include <SFML/Graphics.hpp>
 
 class MapGraphics : public sf::Drawable {
 
 public:
-    MapGraphics();
-
     void resetPolyline(size_t size);
     void setVertex(int i, const sf::Vector2f &position);
 

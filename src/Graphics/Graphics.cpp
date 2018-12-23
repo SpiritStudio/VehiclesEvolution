@@ -84,7 +84,7 @@ void Graphics::newCarsPositions(const std::vector<Car> &cars) {
     }
 }
 
-bool Graphics::isWindowOpen() const {
+const bool Graphics::isWindowOpen() const {
     return window_.isOpen();
 }
 
@@ -135,7 +135,7 @@ void Graphics::restartClock() {
 }
 
 void Graphics::followTheLeader() {
-    if (gui_.doFollowTheLeader() && !cars_graphics_.empty())
+    if (gui_.isFollowingTheLeader() && !cars_graphics_.empty())
     {
         sf::Vector2f new_leader_position(std::numeric_limits<float>::lowest(), 0.0f);
 

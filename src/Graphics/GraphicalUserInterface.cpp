@@ -79,6 +79,6 @@ const int GraphicalUserInterface::getInterfaceWidth() const {
     return interface_width_;
 }
 
-const bool GraphicalUserInterface::doFollowTheLeader() const {
+const bool GraphicalUserInterface::isFollowingTheLeader() const {
     return follow_the_leader_checked_;
 }

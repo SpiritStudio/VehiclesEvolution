@@ -32,23 +32,23 @@ Car::Car(b2World &world, const b2Vec2 &position, const CarParameters &car_parame
     rear_joint_ = (b2RevoluteJoint*)world.CreateJoint(&rear_joint_def_);
 }
 
-b2Vec2 Car::getPosition() const {
+const b2Vec2& Car::getPosition() const {
     return car_body_.getPosition();
 }
 
-b2Vec2 Car::getFrontWheelPosition() const {
+const b2Vec2& Car::getFrontWheelPosition() const {
     return front_wheel_.getPosition();
 }
 
-b2Vec2 Car::getRearWheelPosition() const {
+const b2Vec2& Car::getRearWheelPosition() const {
     return rear_wheel_.getPosition();
 }
 
-double Car::getFrontWheelRadius() const {
+const double Car::getFrontWheelRadius() const {
     return front_wheel_.getRadius();
 }
 
-double Car::getRearWheelRadius() const {
+const double Car::getRearWheelRadius() const {
     return rear_wheel_.getRadius();
 }
 
@@ -56,10 +56,10 @@ std::vector<b2Vec2> Car::getCarBodyVertices() const {
     return car_body_.getPolygon();
 }
 
-double Car::getAngle() const {
+const double Car::getAngle() const {
     return car_body_.getAngle();
 }
 
-bool Car::isDead() const {
+const bool Car::isDead() const {
     return is_dead_;
 }

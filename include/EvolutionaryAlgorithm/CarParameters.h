@@ -5,8 +5,8 @@
 #ifndef VEHICLESEVOLUTION_CARPARAMETERS_H
 #define VEHICLESEVOLUTION_CARPARAMETERS_H
 
-
 #include <vector>
+
 #include <Box2D/Box2D.h>
 
 class CarParameters {

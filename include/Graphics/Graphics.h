@@ -5,7 +5,6 @@
 #ifndef VEHICLESEVOLUTION_GRAPHICS_H
 #define VEHICLESEVOLUTION_GRAPHICS_H
 
-
 #include <iostream>
 
 #include <SFML/Graphics.hpp>
@@ -35,7 +34,7 @@ public:
     void newMap(const Map &map);
     void newCarsPositions(const std::vector<Car> &cars);
 
-    bool isWindowOpen() const;
+    const bool isWindowOpen() const;
     void handleEvents();
 
     void ensureConstantFrameRate(int frameRate);

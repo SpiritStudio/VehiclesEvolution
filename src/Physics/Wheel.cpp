@@ -31,14 +31,14 @@ b2Body* Wheel::getBody() {
     return body_;
 }
 
-b2Vec2 Wheel::getPosition() const {
+const b2Vec2& Wheel::getPosition() const {
     return body_->GetPosition();
 }
 
-double Wheel::getRadius() const {
+const double Wheel::getRadius() const {
     return dynamic_circle_.m_radius;
 }
 
-double Wheel::getAngle() const {
+const double Wheel::getAngle() const {
     return body_->GetAngle();
 }

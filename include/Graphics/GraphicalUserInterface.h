@@ -10,7 +10,6 @@
 
 #include <TGUI/TGUI.hpp>
 #include <SFML/Graphics.hpp>
-#include <include/EvolutionaryAlgorithm/CarParameters.h>
 
 class GraphicalUserInterface {
 
@@ -23,7 +22,7 @@ public:
     void draw();
 
     const int getInterfaceWidth() const;
-    const bool doFollowTheLeader() const;
+    const bool isFollowingTheLeader() const;
 private:
     std::shared_ptr<tgui::Button> addButton(const sf::Vector2f &position, const std::string &text);
     std::shared_ptr<tgui::CheckBox> addCheckbox(const sf::Vector2f &position, const std::string &text);

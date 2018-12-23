@@ -16,14 +16,14 @@ class Car {
 public:
     Car(b2World &world, const b2Vec2 &position, const CarParameters &car_parameters);
 
-    b2Vec2 getPosition() const;
-    b2Vec2 getFrontWheelPosition() const;
-    b2Vec2 getRearWheelPosition() const;
-    double getFrontWheelRadius() const;
-    double getRearWheelRadius() const;
+    const b2Vec2& getPosition() const;
+    const b2Vec2& getFrontWheelPosition() const;
+    const b2Vec2& getRearWheelPosition() const;
+    const double getFrontWheelRadius() const;
+    const double getRearWheelRadius() const;
     std::vector<b2Vec2> getCarBodyVertices() const;
-    double getAngle() const;
-    bool isDead() const;
+    const double getAngle() const;
+    const bool isDead() const;
 
 private:
     Wheel front_wheel_, rear_wheel_;

@@ -19,7 +19,7 @@ void Physics::update() {
     world_.Step(timeStep, velocityIterations, positionIterations);
 }
 
-bool Physics::allDead() {
+const bool Physics::allDead() const{
     return false;
 }
 
@@ -52,10 +52,10 @@ void Physics::makeCar(const CarParameters &car_parameters) {
     notifyCars();
 }
 
-const std::vector<Car>& Physics::getCars() {
+const std::vector<Car>& Physics::getCars() const{
     return cars_;
 }
 
-const Map& Physics::getMap() {
+const Map& Physics::getMap() const{
     return map_;
 }

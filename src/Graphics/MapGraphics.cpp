@@ -4,10 +4,6 @@
 
 #include <Graphics/MapGraphics.h>
 
-MapGraphics::MapGraphics() : map_graphics_() {
-
-}
-
 void MapGraphics::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(map_graphics_, states);
 }

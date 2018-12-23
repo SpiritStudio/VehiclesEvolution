@@ -53,10 +53,10 @@ std::vector<b2Vec2> CarBody::getPolygon() const {
     return vertices;
 }
 
-b2Vec2 CarBody::getPosition() const {
+const b2Vec2& CarBody::getPosition() const {
     return body_->GetPosition();
 }
 
-double CarBody::getAngle() const {
+const double CarBody::getAngle() const {
     return body_->GetAngle();
 }

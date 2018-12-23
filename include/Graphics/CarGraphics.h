@@ -5,7 +5,6 @@
 #ifndef VEHICLESEVOLUTION_CARGRAPHICS_H
 #define VEHICLESEVOLUTION_CARGRAPHICS_H
 
-
 #include <SFML/Graphics.hpp>
 
 class CarGraphics : public sf::Drawable {
@@ -21,9 +20,6 @@ public:
 
 private:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
-
-    void setPosition(const sf::Vector2f &position);
-    void setAngle(float angle);
 
     const sf::Color car_body_color_, wheel_color_;
 
