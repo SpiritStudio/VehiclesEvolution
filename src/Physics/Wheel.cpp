@@ -13,12 +13,12 @@ Wheel::Wheel(b2World &world, double radius) {
     fixture_def_.shape = &dynamic_circle_;
 
     // Set the box density to be non-zero, so it will be dynamic.
-    fixture_def_.density = 1.0f;
+    fixture_def_.density = DENSITY_;
 
     // Override the default friction.
-    fixture_def_.friction = 0.5f;
+    fixture_def_.friction = FRICTION_;
 
-    fixture_def_.restitution = 0.2;
+    fixture_def_.restitution = RESTITIUTION_;
 
     fixture_def_.filter.categoryBits = 0x0001;
     fixture_def_.filter.maskBits = 0x0002;

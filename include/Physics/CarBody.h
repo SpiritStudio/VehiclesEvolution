@@ -21,6 +21,9 @@ public:
     b2Body* getBody();
 
 private:
+    static constexpr float DENSITY_ = 2.0f;
+    static constexpr float FRICTION_ = 0.1f;
+
     b2BodyDef body_def_;
     b2PolygonShape dynamic_box_;
     b2FixtureDef fixture_def_;

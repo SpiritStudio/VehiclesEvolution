@@ -5,6 +5,8 @@
 #include <cmath>
 
 #include <Graphics/CarGraphics.h>
+#include <include/Graphics/CarGraphics.h>
+
 
 CarGraphics::CarGraphics(const std::vector<sf::Vector2f> &vertices,
                          double front_wheel_radius, double rear_wheel_radius) : car_body_color_(255,204,0),
@@ -28,7 +30,6 @@ CarGraphics::CarGraphics(const std::vector<sf::Vector2f> &vertices,
     wheel_rear_.setFillColor(wheel_color_);
 
     auto front_wheel_radius_f = static_cast<float>(front_wheel_radius);
-
     wheel_front_.setRadius(front_wheel_radius_f);
     wheel_front_.setOrigin(front_wheel_radius_f, front_wheel_radius_f);
     wheel_front_.setFillColor(wheel_color_);

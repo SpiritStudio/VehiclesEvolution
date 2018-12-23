@@ -60,10 +60,10 @@ Map::Map(b2World &world) {
         fixture_def_.at(i).shape = &map_shape_.at(i);
 
         // Set the box density to be non-zero, so it will be dynamic.
-        fixture_def_.at(i).density = 1.0f;
+        fixture_def_.at(i).density = DENSITY_;
 
         // Override the default friction.
-        fixture_def_.at(i).friction = 0.1f;
+        fixture_def_.at(i).friction = FRICTION_;
 
         fixture_def_.at(i).filter.categoryBits = 0x0002;
         fixture_def_.at(i).filter.maskBits = 0x0001;
@@ -78,10 +78,6 @@ const b2Vec2& Map::getPosition() const {
 
 const std::vector<b2Vec2>& Map::getPolyline() const {
     return polyline_;
-}
-
-const double Map::getAngle() const {
-    return body_->GetAngle();
 }
 
 void Map::loadFromFile(std::string filename) {

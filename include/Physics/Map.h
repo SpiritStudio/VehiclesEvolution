@@ -13,11 +13,13 @@ public:
     Map(b2World &world);
 
     const b2Vec2& getPosition() const;
-    const double getAngle() const;
     const std::vector<b2Vec2>& getPolyline() const;
 
 private:
     void loadFromFile(std::string filename);
+
+    static constexpr float DENSITY_ = 1.0f;
+    static constexpr float FRICTION_ = 0.1f;
 
     b2BodyDef body_def_;
     std::vector<b2PolygonShape> map_shape_;

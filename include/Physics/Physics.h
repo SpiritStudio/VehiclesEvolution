@@ -31,7 +31,7 @@ public:
         return physicsInstance;
     }
 
-    void update();
+    void update(const int frame_rate);
     const bool allDead() const;
 
     void makeCars(const std::vector<CarParameters> &cars_parameters);
@@ -46,6 +46,8 @@ public:
 
 private:
     Physics();
+
+    static const b2Vec2 CAR_STARTING_POSITION_;
 
     b2Vec2 gravity_;
     b2World world_;

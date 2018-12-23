@@ -7,9 +7,8 @@ cmake_minimum_required(VERSION 2.6)
 set(CMAKE_CXX_STANDARD 14)
 
 set(GTEST_LIBRARIES "${PROJECT_SOURCE_DIR}/../lib/libgtest.a"
-        "${PROJECT_SOURCE_DIR}/../lib/libgtest_main.a")
+                    "${PROJECT_SOURCE_DIR}/../lib/libgtest_main.a")
 
-include_directories(.)
 include_directories(..)
 include_directories(../include)
 
@@ -22,8 +21,8 @@ add_executable(${EXECUTABLE_NAME} gtest.cpp ../src/Physics/Physics.cpp ../src/Ph
         ../src/Graphics/GraphicalUserInterface.cpp)
 
 set(SFML_LIBRARIES "${PROJECT_SOURCE_DIR}/../lib/libsfml-graphics.so"
-        "${PROJECT_SOURCE_DIR}/../lib/libsfml-window.so"
-        "${PROJECT_SOURCE_DIR}/../lib/libsfml-system.so")
+                   "${PROJECT_SOURCE_DIR}/../lib/libsfml-window.so"
+                   "${PROJECT_SOURCE_DIR}/../lib/libsfml-system.so")
 set(BOX2D_LIBRARIES "${PROJECT_SOURCE_DIR}/../lib/libBox2D.a")
 set(TGUI_LIBRARIES "${PROJECT_SOURCE_DIR}/../lib/libtgui.so")
 

@@ -7,6 +7,8 @@
 
 int main()
 {
+    constexpr int FRAME_RATE = 60;
+
     Physics::getInstance().notifyMap();
     Physics::getInstance().notifyCars();
 
@@ -27,11 +29,11 @@ int main()
     {
         Graphics::getInstance().handleEvents();
 
-        Physics::getInstance().update();
+        Physics::getInstance().update(FRAME_RATE);
         Physics::getInstance().notifyCarsPositions();
 
         Graphics::getInstance().draw();
-        Graphics::getInstance().ensureConstantFrameRate(60);
+        Graphics::getInstance().ensureConstantFrameRate(FRAME_RATE);
     }
 
     return 0;

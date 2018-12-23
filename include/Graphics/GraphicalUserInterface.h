@@ -23,9 +23,16 @@ public:
 
     const int getInterfaceWidth() const;
     const bool isFollowingTheLeader() const;
+
 private:
     std::shared_ptr<tgui::Button> addButton(const sf::Vector2f &position, const std::string &text);
     std::shared_ptr<tgui::CheckBox> addCheckbox(const sf::Vector2f &position, const std::string &text);
+
+    static constexpr int BUTTON_HEIGHT_PIXELS_ = 40;
+    static constexpr int BUTTON_WIDTH_PIXELS_ = 200;
+    static constexpr float FIRST_BUTTON_VERTICAL_DISTANCE_PIXELS_ = 50;
+    static constexpr int BUTTONS_VERTICAL_DISTANCE_PIXELS_ = 100;
+    static constexpr int CHECKBOX_SIZE_PIXELS_ = 20;
 
     const int interface_width_, interface_height_;
 

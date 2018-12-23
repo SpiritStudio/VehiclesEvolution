@@ -45,6 +45,8 @@ public:
 private:
     Graphics();
 
+    CarGraphics generateGraphics(const Car &car);
+
     void followTheLeader();
 
     static constexpr float PIXELS_PER_METER_ = 60.0f;

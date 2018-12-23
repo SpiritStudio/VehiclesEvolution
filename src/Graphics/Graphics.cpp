@@ -5,9 +5,11 @@
 #include <iostream>
 
 #include <Graphics/Graphics.h>
+#include <include/Graphics/Graphics.h>
+
 
 Graphics::Graphics() : settings_(0, 0, 8),
-                       view_action_(sf::FloatRect(0.f, 0.f, WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_)),
+                       view_action_(sf::FloatRect(0.0f, 0.0f, WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_)),
                        view_gui_(view_action_),
                        window_(sf::VideoMode(WINDOW_WIDTH_PIXELS_, WINDOW_HEIGHT_PIXELS_),
                                "Vehicles Evolution Simulation", sf::Style::Default, settings_),
@@ -22,21 +24,9 @@ Graphics::Graphics() : settings_(0, 0, 8),
 void Graphics::newCars(const std::vector<Car> &cars) {
     cars_graphics_.clear();
 
-    // TODO: Wrap sf:: and b2:: convert methods
-
     for (const auto &car : cars)
     {
-        auto vertices = car.getCarBodyVertices();
-        std::vector<sf::Vector2f> sf_vertices;
-        sf_vertices.reserve(vertices.size());
-
-        for (auto &vertex : vertices)
-        {
-            sf_vertices.emplace_back(vertex.x * PIXELS_PER_METER_, vertex.y * PIXELS_PER_METER_);
-        }
-
-        cars_graphics_.emplace_back(sf_vertices, car.getFrontWheelRadius() * PIXELS_PER_METER_,
-                                                 car.getRearWheelRadius() * PIXELS_PER_METER_);
+        cars_graphics_.push_back(generateGraphics(car));
     }
 }
 
@@ -77,7 +67,7 @@ void Graphics::newCarsPositions(const std::vector<Car> &cars) {
         cars_graphics_.at(i).setFrontWheelPosition(front_wheel_position);
 
         sf::Vector2f rear_wheel_position = sf::Vector2f(PIXELS_PER_METER_ * car.getRearWheelPosition().x,
-                                                         PIXELS_PER_METER_ * car.getRearWheelPosition().y);
+                                                        PIXELS_PER_METER_ * car.getRearWheelPosition().y);
         cars_graphics_.at(i).setRearWheelPosition(rear_wheel_position);
 
         ++i;
@@ -149,4 +139,18 @@ void Graphics::followTheLeader() {
     }
 
     window_.setView(view_action_);
+}
+
+CarGraphics Graphics::generateGraphics(const Car &car) {
+    auto vertices = car.getCarBodyVertices();
+    std::vector<sf::Vector2f> sf_vertices;
+    sf_vertices.reserve(vertices.size());
+
+    for (const auto &vertex : vertices)
+    {
+        sf_vertices.emplace_back(vertex.x * PIXELS_PER_METER_, vertex.y * PIXELS_PER_METER_);
+    }
+
+    return CarGraphics(sf_vertices, car.getFrontWheelRadius() * PIXELS_PER_METER_,
+                       car.getRearWheelRadius() * PIXELS_PER_METER_);
 }

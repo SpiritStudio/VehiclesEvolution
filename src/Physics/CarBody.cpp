@@ -9,7 +9,7 @@ CarBody::CarBody(b2World &world, const b2Vec2 &position, const std::vector<b2Vec
     body_def_.position.Set(position.x, position.y);
     body_ = world.CreateBody(&body_def_);
 
-    auto vertices_tab = new b2Vec2 [vertices.size()];
+        auto vertices_tab = new b2Vec2 [vertices.size()];
 
     int32 i = 0;
     for (const auto &vertex : vertices) {
@@ -24,10 +24,10 @@ CarBody::CarBody(b2World &world, const b2Vec2 &position, const std::vector<b2Vec
     fixture_def_.shape = &dynamic_box_;
 
     // Set the box density to be non-zero, so it will be dynamic.
-    fixture_def_.density = 2.0f;
+    fixture_def_.density = DENSITY_;
 
     // Override the default friction.
-    fixture_def_.friction = 0.1f;
+    fixture_def_.friction = FRICTION_;
 
     fixture_def_.filter.categoryBits = 0x0001;
     fixture_def_.filter.maskBits = 0x0002;
