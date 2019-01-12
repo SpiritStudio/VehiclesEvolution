@@ -9,7 +9,7 @@ CarBody::CarBody(b2World &world, const b2Vec2 &position, const std::vector<b2Vec
     body_def_.position.Set(position.x, position.y);
     body_ = world.CreateBody(&body_def_);
 
-        auto vertices_tab = new b2Vec2 [vertices.size()];
+    auto vertices_tab = new b2Vec2 [vertices.size()];
 
     int32 i = 0;
     for (const auto &vertex : vertices) {
