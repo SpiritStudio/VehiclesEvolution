@@ -6,6 +6,7 @@
 
 Car::Car(b2World &world, const b2Vec2 &position, const CarParameters &car_parameters) :
                                                                 is_dead_(false),
+                                                                started_(false),
                                                                 car_body_(world, position, car_parameters.car_body_),
                                                                 front_wheel_(world, car_parameters.front_wheel_radius_),
                                                                 rear_wheel_(world, car_parameters.rear_wheel_radius_) {
@@ -36,6 +37,14 @@ const b2Vec2& Car::getPosition() const {
     return car_body_.getPosition();
 }
 
+const double Car::getBestPosition() const {
+    return best_position_x_;
+}
+
+const b2Vec2 Car::getVelocity() const{
+    return car_body_.getVelocity();
+}
+
 const b2Vec2& Car::getFrontWheelPosition() const {
     return front_wheel_.getPosition();
 }
@@ -61,5 +70,22 @@ const double Car::getAngle() const {
 }
 
 const bool Car::isDead() const {
+    if (!is_dead_) {
+        std::chrono::duration<double> elapsed = std::chrono::high_resolution_clock::now() - stands_still_since_;
+
+        if (utils::isNearlyZero(getPosition().x - last_iteration_position_x_, MIN_DIST_IN_ITERATION_)) {
+            if ((elapsed.count()) > TIME_STANDING_STILL_TO_DIE_S_) {
+                is_dead_ = true;
+            }
+        } else {
+            stands_still_since_ = std::chrono::high_resolution_clock::now();
+        }
+        last_iteration_position_x_ = getPosition().x;
+
+        if (best_position_x_ < getPosition().x) {
+            best_position_x_ = getPosition().x;
+        }
+    }
+
     return is_dead_;
 }

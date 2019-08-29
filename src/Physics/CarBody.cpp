@@ -9,7 +9,7 @@ CarBody::CarBody(b2World &world, const b2Vec2 &position, const std::vector<b2Vec
     body_def_.position.Set(position.x, position.y);
     body_ = world.CreateBody(&body_def_);
 
-        auto vertices_tab = new b2Vec2 [vertices.size()];
+    auto vertices_tab = new b2Vec2 [vertices.size()];
 
     int32 i = 0;
     for (const auto &vertex : vertices) {
@@ -29,6 +29,9 @@ CarBody::CarBody(b2World &world, const b2Vec2 &position, const std::vector<b2Vec
     // Override the default friction.
     fixture_def_.friction = FRICTION_;
 
+    fixture_def_.restitution = RESTITIUTION_;
+
+    // Collision detection masks from box2d
     fixture_def_.filter.categoryBits = 0x0001;
     fixture_def_.filter.maskBits = 0x0002;
 
@@ -55,6 +58,10 @@ std::vector<b2Vec2> CarBody::getPolygon() const {
 
 const b2Vec2& CarBody::getPosition() const {
     return body_->GetPosition();
+}
+
+const b2Vec2 CarBody::getVelocity() const {
+    return body_->GetLinearVelocity();
 }
 
 const double CarBody::getAngle() const {
