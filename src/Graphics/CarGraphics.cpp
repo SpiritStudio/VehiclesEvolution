@@ -64,6 +64,20 @@ const sf::CircleShape& CarGraphics::getRearWheel() const {
     return wheel_rear_;
 }
 
+void CarGraphics::setDead() {
+    sf::Color new_color = car_body_graphics_.getFillColor();
+    new_color.a = 80;
+    car_body_graphics_.setFillColor(new_color);
+
+    new_color = wheel_front_.getFillColor();
+    new_color.a = 80;
+    wheel_front_.setFillColor(new_color);
+
+    new_color = wheel_rear_.getFillColor();
+    new_color.a = 80;
+    wheel_rear_.setFillColor(new_color);
+}
+
 void CarGraphics::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(car_body_graphics_, states);
     target.draw(wheel_front_, states);

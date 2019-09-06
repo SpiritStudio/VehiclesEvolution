@@ -37,6 +37,9 @@ public:
     */
     void setRearWheelPosition(const sf::Vector2f &position);
 
+    //! A method for setting car as not displayable
+    void setDead();
+
     //!  A method for getting the position of the CarGraphics object
     const sf::Vector2f& getPosition() const;
 
@@ -54,23 +57,23 @@ private:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
     //! Private consant variable.
     /*!
-        Store the information about color of car body and wheels
+        Stores the information about color of car body and wheels
     */
     const sf::Color car_body_color_, wheel_color_;
 
     //! Private constant variable.
     /*!
-        Store the information about convex polygonal shape of car body
+        Stores the information about convex polygonal shape of car body
     */
     sf::ConvexShape car_body_graphics_;
     //! Private constant variable.
     /*!
-        Store the information about circle shape of rear wheel
+        Stores the information about circle shape of rear wheel
     */
     sf::CircleShape wheel_rear_;
     //! Private constant variable.
     /*!
-        Store the information about circle shape of front wheel
+        Stores the information about circle shape of front wheel
     */
     sf::CircleShape wheel_front_;
 
