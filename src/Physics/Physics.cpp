@@ -7,8 +7,8 @@
 const b2Vec2 Physics::CAR_STARTING_POSITION_ = b2Vec2(10.0f, 3.0f);
 
 Physics::Physics() : gravity_(0.0f, 9.81f),
-                      world_(gravity_),
-                      map_(world_) {
+                     world_(gravity_),
+                     map_(world_) {
 }
 
 void Physics::update(const int frame_rate) {

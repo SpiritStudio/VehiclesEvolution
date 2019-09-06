@@ -34,3 +34,17 @@ cmake-build*/
 *.exe
 *.out
 *.app
+
+# CMake
+cmake-build-debug/*
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# Make
+Makefile
+VehiclesEvolution
+
+# test
+test/lib*
+*googletest*
