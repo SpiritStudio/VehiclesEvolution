@@ -18,7 +18,7 @@ find_package(Box2D REQUIRED) # tested on 2.3.1
 find_package(SFML 2 REQUIRED COMPONENTS system window graphics network audio) # tested on 2.4.2
 find_package(TGUI 0.8 REQUIRED) # tested on 0.8.5
 
-include_directories(${SFML_INCLUDE_DIR} ${TGUI_INCLUDE_DIR})
+include_directories(${BOX2D_INCLUDE_DIR} ${SFML_INCLUDE_DIR} ${TGUI_INCLUDE_DIR})
 
 add_executable(${EXECUTABLE_NAME}
         src/main.cpp src/Physics/Physics.cpp src/Physics/Car.cpp src/Physics/Map.cpp
@@ -28,6 +28,5 @@ add_executable(${EXECUTABLE_NAME}
 
 target_link_libraries(${EXECUTABLE_NAME}
                       ${SFML_LIBRARIES} ${SFML_DEPENDENCIES}
-                      ${BOX2D_LIBRARIES}
-                      ${TGUI_LIBRARY}
-                      ${GTEST_LIBRARIES})
+                      ${BOX2D_LIBRARY}
+                      ${TGUI_LIBRARY})

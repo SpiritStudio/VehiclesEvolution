@@ -44,22 +44,25 @@ include_directories(../include)
 set(EXECUTABLE_NAME "runTests")
 set(TEST_SOURCES "gtest.cpp" "src/Car.cpp" "src/Map.cpp" "src/Utils.cpp")
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/../cmake_modules" ${CMAKE_MODULE_PATH})
+
+find_package(Box2D REQUIRED) # tested on 2.3.1
+find_package(SFML 2 REQUIRED COMPONENTS system window graphics network audio) # tested on 2.4.2
+find_package(TGUI 0.8 REQUIRED) # tested on 0.8.5
+
+include_directories(${BOX2D_INCLUDE_DIR} ${SFML_INCLUDE_DIR} ${TGUI_INCLUDE_DIR})
+
 add_executable(${EXECUTABLE_NAME} ${TEST_SOURCES} ../src/Physics/Physics.cpp ../src/Physics/Car.cpp ../src/Physics/Map.cpp
         ../src/EvolutionaryAlgorithm/CarParameters.cpp ../src/Graphics/Graphics.cpp
         ../src/EvolutionaryAlgorithm/EvolutionaryAlgorithm.cpp ../src/Graphics/CarGraphics.cpp
         ../src/Graphics/MapGraphics.cpp ../src/Physics/CarBody.cpp ../src/Physics/Wheel.cpp
         ../src/Graphics/GraphicalUserInterface.cpp ../src/Utils.cpp)
 
-
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/../cmake_modules" ${CMAKE_MODULE_PATH})
-find_package(Box2D REQUIRED) # tested on 2.3.1
-find_package(SFML 2 REQUIRED COMPONENTS system window graphics network audio) # tested on 2.4.2
-find_package(TGUI 0.8 REQUIRED) # tested on 0.8.5
-
 target_link_libraries(${EXECUTABLE_NAME}
         gtest
         ${SFML_LIBRARIES}
-        ${BOX2D_LIBRARIES} ${SFML_DEPENDENCIES}
+        ${SFML_DEPENDENCIES}
+        ${BOX2D_LIBRARY}
         ${TGUI_LIBRARY}
         pthread)
 
