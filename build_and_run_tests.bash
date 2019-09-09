@@ -5,6 +5,7 @@ cd $DIR
 cd test
 cmake CMakeLists.txt
 make
+
 ./runTests
 
 rm -r CMakeCache.txt CMakeFiles/ Makefile cmake_install.cmake runTests
