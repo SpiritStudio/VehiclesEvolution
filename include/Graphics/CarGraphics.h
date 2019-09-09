@@ -40,6 +40,9 @@ public:
     //! A method for setting car as not displayable
     void setDead();
 
+    //! A method that returns if car is alive
+    bool isAlive() const;
+
     //!  A method for getting the position of the CarGraphics object
     const sf::Vector2f& getPosition() const;
 

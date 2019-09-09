@@ -78,6 +78,10 @@ void CarGraphics::setDead() {
     wheel_rear_.setFillColor(new_color);
 }
 
+bool CarGraphics::isAlive() const {
+    return car_body_graphics_.getFillColor().a > 250;
+}
+
 void CarGraphics::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(car_body_graphics_, states);
     target.draw(wheel_front_, states);

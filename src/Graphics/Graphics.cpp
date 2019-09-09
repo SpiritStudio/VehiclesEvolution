@@ -28,6 +28,8 @@ void Graphics::newCars(const std::vector<Car> &cars) {
     {
         cars_graphics_.push_back(generateGraphics(car));
     }
+
+    gui_.increaseGenerationNumber();
 }
 
 void Graphics::newMap(const Map &map) {
@@ -54,12 +56,13 @@ void Graphics::newMap(const Map &map) {
 }
 
 void Graphics::newCarsPositions(const std::vector<Car> &cars) {
-    unsigned long i = 0;
+    unsigned long i = 0, dead = 0;
     for (const auto &car : cars)
     {
         if (car.isDead())
         {
             cars_graphics_.at(i).setDead();
+            ++dead;
         }
 
         auto angle = static_cast<float>(car.getAngle() * 180.0f / M_PI);
@@ -77,6 +80,8 @@ void Graphics::newCarsPositions(const std::vector<Car> &cars) {
 
         ++i;
     }
+
+    gui_.setStatus(i - dead, i);
 }
 
 const bool Graphics::isWindowOpen() const {
@@ -151,7 +156,7 @@ void Graphics::followTheLeader() {
         sf::Vector2f new_leader_position(std::numeric_limits<float>::lowest(), 0.0f);
 
         for (const auto &car : cars_graphics_) {
-            if (car.getPosition().x >= new_leader_position.x)
+            if (car.getPosition().x >= new_leader_position.x && car.isAlive())
                 new_leader_position = car.getPosition();
         }
 
@@ -179,4 +184,3 @@ CarGraphics Graphics::generateGraphics(const Car &car) {
 double Graphics::convertPixelsToMeters(double pixels) {
     return pixels / PIXELS_PER_METER_;
 }
-

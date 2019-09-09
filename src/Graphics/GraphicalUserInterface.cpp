@@ -11,10 +11,16 @@ GraphicalUserInterface::GraphicalUserInterface(sf::RenderWindow &window, const i
     , interface_width_(interface_width)
     , interface_height_(interface_height)
     , background_color_(255, 153, 0, 50)
+    , generation_number_(-1)
 {
     background_.setSize(sf::Vector2f(interface_width_, interface_height_));
     background_.setPosition(sf::Vector2f(0.0f, 0.0f));
     background_.setFillColor(background_color_);
+
+    status_ = tgui::Label::create("Cars alive: 0 / 0 \nGeneration: 0");
+
+    status_->setPosition((interface_width_ - BUTTON_WIDTH_PIXELS_) / 2, interface_height - 50);
+    gui_.add(status_);
 }
 
 bool GraphicalUserInterface::handleEvent(sf::Event &event){
@@ -42,6 +48,7 @@ void GraphicalUserInterface::addWidgets() {
 
     button = addButton(sf::Vector2f(left_side_offset, vertical_distance), "Generate new population");
     button->connect("pressed", &Physics::makeCars, &Physics::getInstance(), params_example);
+    button->connect("pressed", [&](){ generation_number_ = 1; });
     vertical_distance += BUTTONS_VERTICAL_DISTANCE_PIXELS_;
 
     auto checkbox = addCheckbox(sf::Vector2f(left_side_offset, vertical_distance), "Follow the leader");
@@ -79,4 +86,15 @@ const int GraphicalUserInterface::getInterfaceWidth() const {
 
 const bool GraphicalUserInterface::isFollowingTheLeader() const {
     return follow_the_leader_checked_;
+}
+
+void GraphicalUserInterface::setStatus(size_t alive, size_t all) {
+    std::ostringstream ss;
+    ss << "Cars alive: " << alive << " / " << all << "\nGeneration: " << generation_number_;
+
+    status_->setText(ss.str());
+}
+
+void GraphicalUserInterface::increaseGenerationNumber() {
+    ++generation_number_;
 }

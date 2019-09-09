@@ -35,6 +35,12 @@ public:
     //!  A method for checking whether the following leather button is checked.
     const bool isFollowingTheLeader() const;
 
+    //!  A Method for setting number of alive cars.
+    void setStatus(size_t alive, size_t all);
+
+    //! A method for increasing generation number.
+    void increaseGenerationNumber();
+
 private:
     //! Private pointer
     /*!
@@ -105,7 +111,16 @@ private:
         An object representing background of interface
     */
     sf::RectangleShape background_;
-
+    //! Private variable.
+    /*!
+        Stores the information about current generation status.
+    */
+    tgui::Label::Ptr status_;
+    //! Private variable.
+    /*!
+        Stores the information about current generation number.
+    */
+    int generation_number_;
     //! Private variable.
     /*!
         Store the information about whether the Follow The Leader checkbox is checked.

@@ -72,7 +72,7 @@ private:
     /*!
         The attribute consists of information about minimal distance that car needs to cover in one iteration not to be considered dead.
     */
-    static constexpr double MIN_DIST_IN_ITERATION_{1e-5};
+    static constexpr double MIN_DIST_IN_ITERATION_{1e-2};
 
     //!  Private object
     /*!
