@@ -15,15 +15,15 @@ TEST(HolisticTests, Car)
     double rear_wheel_radius = 3.4;
 
     std::vector<b2Vec2> car_body;
-    car_body.emplace_back(-1, 0);
-    car_body.emplace_back(0, 1);
-    car_body.emplace_back(1, 1);
-    car_body.emplace_back(2, 0);
-    car_body.emplace_back(1, -1);
-    car_body.emplace_back(0, -1);
 
-    b2Vec2 front_joint = car_body.at(4);
-    b2Vec2 rear_joint = car_body.at(5);
+    car_body.emplace_back(2, 0);
+    car_body.emplace_back(1, 1);
+    car_body.emplace_back(0, 1);
+    car_body.emplace_back(-1, 0);
+    car_body.emplace_back(0, -1);
+    car_body.emplace_back(1, -1);
+    b2Vec2 front_joint = car_body.at(5);
+    b2Vec2 rear_joint = car_body.at(4);
 
 
     // Testing CarParameters constructor
