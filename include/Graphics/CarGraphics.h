@@ -80,6 +80,12 @@ private:
     */
     sf::CircleShape wheel_front_;
 
+    //! Private constant variable.
+    /*!
+        Stores the information about state of car
+    */
+    bool is_alive_;
+
 };
 
 

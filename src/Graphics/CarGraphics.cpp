@@ -10,7 +10,8 @@
 
 CarGraphics::CarGraphics(const std::vector<sf::Vector2f> &vertices,
                          double front_wheel_radius, double rear_wheel_radius) : car_body_color_(255,204,0),
-                                                                                wheel_color_(255,51,102) {
+                                                                                wheel_color_(255,51,102),
+                                                                                is_alive_(true) {
     car_body_graphics_.setPointCount(vertices.size());
     car_body_graphics_.setOrigin(sf::Vector2f(0.0f, 0.0f));
 
@@ -76,10 +77,12 @@ void CarGraphics::setDead() {
     new_color = wheel_rear_.getFillColor();
     new_color.a = 80;
     wheel_rear_.setFillColor(new_color);
+
+    is_alive_ = false;
 }
 
 bool CarGraphics::isAlive() const {
-    return car_body_graphics_.getFillColor().a > 250;
+    return is_alive_;
 }
 
 void CarGraphics::draw(sf::RenderTarget &target, sf::RenderStates states) const {
