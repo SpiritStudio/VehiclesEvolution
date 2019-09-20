@@ -19,7 +19,7 @@ EvolutionaryAlgorithm& EvolutionaryAlgorithm::getInstance() {
 
 const CarParameters EvolutionaryAlgorithm::generateRandomCar() const {
     // wheels radiuses generation
-    std::normal_distribution<double> wheel_radius_distribution(wheel_expedted_value_, wheel_sigma_);
+    std::normal_distribution<double> wheel_radius_distribution(wheel_expected_value_, wheel_sigma_);
     double first_wheel_radius = std::fabs(wheel_radius_distribution(generator_));
     double second_wheel_radius = std::fabs(wheel_radius_distribution(generator_));
 
@@ -122,12 +122,52 @@ const double EvolutionaryAlgorithm::getCrossoverProbability() const {
     return crossover_probability_;
 }
 
+const double EvolutionaryAlgorithm::getWheelSigma() const {
+    return wheel_sigma_;
+}
+
+const double EvolutionaryAlgorithm::getWheelExpectedValue() const {
+    return wheel_expected_value_;
+}
+
+const double EvolutionaryAlgorithm::getMinCarBodyPointRadius() const {
+    return min_car_body_point_radius_;
+}
+
+const double EvolutionaryAlgorithm::getMaxCarBodyPointRadius() const {
+    return max_car_body_point_radius_;
+}
+
+const double EvolutionaryAlgorithm::getCarBodyPointCartesianSigma() const {
+    return car_body_point_cartesian_sigma_;
+}
+
 void EvolutionaryAlgorithm::setMutationProbability_(double mutation_probability) {
-    EvolutionaryAlgorithm::mutation_probability_ = mutation_probability;
+    EvolutionaryAlgorithm::mutation_probability_ = std::max(0.0, std::min(1.0, mutation_probability));
 }
 
 void EvolutionaryAlgorithm::setCrossoverProbability_(double crossover_probability) {
-    EvolutionaryAlgorithm::crossover_probability_ = crossover_probability;
+    EvolutionaryAlgorithm::crossover_probability_ = std::max(0.0, std::min(1.0, crossover_probability));
+}
+
+void EvolutionaryAlgorithm::setWheelSigma_(double wheel_sigma) {
+    EvolutionaryAlgorithm::wheel_sigma_ = wheel_sigma;
+}
+
+void EvolutionaryAlgorithm::setWheelExpectedValue_(double wheel_expected_value) {
+    EvolutionaryAlgorithm::wheel_expected_value_ = wheel_expected_value;
+}
+
+void EvolutionaryAlgorithm::setMinCarBodyPointRadius_(double min_car_body_point_radius) {
+    EvolutionaryAlgorithm::min_car_body_point_radius_ = min_car_body_point_radius;
+}
+
+void EvolutionaryAlgorithm::setMaxCarBodyPointRadius_(double max_car_body_point_radius) {
+    EvolutionaryAlgorithm::max_car_body_point_radius_ = max_car_body_point_radius;
+}
+
+void EvolutionaryAlgorithm::setCarBodyPointCartesianSigma_(double car_body_point_cartesian_sigma) {
+    EvolutionaryAlgorithm::car_body_point_cartesian_sigma_ = car_body_point_cartesian_sigma;
 }
 
 bool EvolutionaryAlgorithm::maybeMutate(CarParameters & parameters) const {

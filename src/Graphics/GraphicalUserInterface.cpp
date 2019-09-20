@@ -54,6 +54,65 @@ void GraphicalUserInterface::addWidgets() {
     auto checkbox = addCheckbox(sf::Vector2f(left_side_offset, vertical_distance), "Follow the leader");
     checkbox->connect("checked", [&](){ follow_the_leader_checked_ = true; });
     checkbox->connect("unchecked", [&](){ follow_the_leader_checked_ = false; });
+    vertical_distance += SLIDERS_VERTICAL_DISTANCE_PIXELS_;
+
+    generateParameterSliders(left_side_offset, vertical_distance);
+}
+
+void GraphicalUserInterface::generateParameterSliders(float offset_x, float offset_y) {
+    auto generateSlider = [&](const std::string &text, tgui::Label::Ptr &label,
+                              tgui::Slider::Ptr &slider, std::pair<double, double> range, double value) {
+        label = tgui::Label::create(text + ": " + std::to_string(value));
+        label->setPosition(offset_x, offset_y);
+        gui_.add(label);
+        offset_y += SLIDERS_VERTICAL_DISTANCE_PIXELS_;
+
+        slider = addSlider({offset_x, offset_y}, range, value);
+        offset_y += SLIDERS_VERTICAL_DISTANCE_PIXELS_;
+    };
+
+    generateSlider("Crossover probability", crossover_probability_l_, crossover_probability_, {0.0, 1.0}, 0.4);
+    crossover_probability_->connect("ValueChanged", [&](){
+        EvolutionaryAlgorithm::getInstance().setCrossoverProbability_(crossover_probability_->getValue());
+        crossover_probability_l_->setText("Crossover probability: " +
+                std::to_string(EvolutionaryAlgorithm::getInstance().getCrossoverProbability()));
+    });
+    generateSlider("Mutation probability", mutation_probability_l_, mutation_probability_, {0.0, 1.0}, 0.03);
+    mutation_probability_->connect("ValueChanged", [&](){
+        EvolutionaryAlgorithm::getInstance().setMutationProbability_(mutation_probability_->getValue());
+        mutation_probability_l_->setText("Mutation probability: " +
+                std::to_string(EvolutionaryAlgorithm::getInstance().getMutationProbability()));
+    });
+    generateSlider("Wheel radius sigma", wheel_sigma_l_, wheel_sigma_, {0.0, 1.0}, 0.15);
+    wheel_sigma_->connect("ValueChanged", [&](){
+        EvolutionaryAlgorithm::getInstance().setWheelSigma_(wheel_sigma_->getValue());
+        wheel_sigma_l_->setText("Wheel radius sigma: " +
+                std::to_string(EvolutionaryAlgorithm::getInstance().getWheelSigma()));
+    });
+    generateSlider("Wheel radius avg value", wheel_expected_value_l_, wheel_expected_value_, {0.0, 3.0}, 0.5);
+    wheel_expected_value_->connect("ValueChanged", [&](){
+        EvolutionaryAlgorithm::getInstance().setWheelExpectedValue_(wheel_expected_value_->getValue());
+        wheel_expected_value_l_->setText("Wheel radius avg value: " +
+                std::to_string(EvolutionaryAlgorithm::getInstance().getWheelExpectedValue()));
+    });
+    generateSlider("Min body point radius", min_car_body_point_radius_l_, min_car_body_point_radius_, {0.0, 2.0}, 0.3);
+    min_car_body_point_radius_->connect("ValueChanged", [&](){
+        EvolutionaryAlgorithm::getInstance().setMinCarBodyPointRadius_(min_car_body_point_radius_->getValue());
+        min_car_body_point_radius_l_->setText("Min body point radius: " +
+                std::to_string(EvolutionaryAlgorithm::getInstance().getMinCarBodyPointRadius()));
+    });
+    generateSlider("Max body point radius", max_car_body_point_radius_l_, max_car_body_point_radius_, {0.0, 5.0}, 2);
+    max_car_body_point_radius_->connect("ValueChanged", [&](){
+        EvolutionaryAlgorithm::getInstance().setMaxCarBodyPointRadius_(max_car_body_point_radius_->getValue());
+        max_car_body_point_radius_l_->setText("Max body point radius: " +
+                std::to_string(EvolutionaryAlgorithm::getInstance().getMaxCarBodyPointRadius()));
+    });
+    generateSlider("Body point XY sigma", car_body_point_cartesian_sigma_l_, car_body_point_cartesian_sigma_, {0.0, 2.0}, 0.3);
+    car_body_point_cartesian_sigma_->connect("ValueChanged", [&](){
+        EvolutionaryAlgorithm::getInstance().setCrossoverProbability_(car_body_point_cartesian_sigma_->getValue());
+        car_body_point_cartesian_sigma_l_->setText("Body point XY sigma: " +
+                std::to_string(EvolutionaryAlgorithm::getInstance().getCarBodyPointCartesianSigma()));
+    });
 }
 
 std::shared_ptr<tgui::Button> GraphicalUserInterface::addButton(const sf::Vector2f &position, const std::string &text) {
@@ -73,6 +132,20 @@ std::shared_ptr<tgui::CheckBox> GraphicalUserInterface::addCheckbox(const sf::Ve
     gui_.add(checkbox);
 
     return checkbox;
+}
+
+std::shared_ptr<tgui::Slider> GraphicalUserInterface::addSlider(const sf::Vector2f &position,
+                                                                const std::pair<double, double> &range,
+                                                                double default_value) {
+    auto slider = tgui::Slider::create();
+    slider->setPosition(position);
+    slider->setSize(SLIDER_WIDTH_PIXELS_, SLIDER_HEIGHT_PIXELS_);
+    slider->setMinimum(range.first);
+    slider->setMaximum(range.second);
+    slider->setStep(0.01f);
+    slider->setValue(default_value);
+    gui_.add(slider);
+    return slider;
 }
 
 void GraphicalUserInterface::draw() {

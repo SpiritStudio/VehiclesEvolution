@@ -39,14 +39,36 @@ public:
         \param distances is a vector which consist of distances covered by lastly created generation.
     */
     const std::vector<CarParameters> generateNewPopulation();
+
     //!  A Method for getting the value of mutation probability in newly generated populations.
     const double getMutationProbability() const;
     //!  A Method for getting the value of crossover probability in newly generated populations.
     const double getCrossoverProbability() const;
+    //!  A Method for getting the value of wheel sigma for randomization purposes.
+    const double getWheelSigma() const;
+    //!  A Method for getting the value of wheel expected value for randomization purposes.
+    const double getWheelExpectedValue() const;
+    //!  A Method for getting the value of minimum car body point radius for randomization purposes.
+    const double getMinCarBodyPointRadius() const;
+    //!  A Method for getting the value of maximum car body point radius for randomization purposes.
+    const double getMaxCarBodyPointRadius() const;
+    //!  A Method for getting the value of car body point cartesian sigma for randomization purposes.
+    const double getCarBodyPointCartesianSigma() const;
+
     //!  A Method for setting the value of mutation probability in newly generated populations.
     void setMutationProbability_(double mutation_probability);
     //!  A Method for setting the value of crossover probability in newly generated populations.
     void setCrossoverProbability_(double crossover_probability);
+    //!  A Method for setting the value of wheel sigma for randomization purposes.
+    void setWheelSigma_(double wheel_sigma);
+    //!  A Method for setting the value of wheel expected value for randomization purposes.
+    void setWheelExpectedValue_(double wheel_expected_value);
+    //!  A Method for setting the value of minimum car body point radius for randomization purposes.
+    void setMinCarBodyPointRadius_(double min_car_body_point_radius);
+    //!  A Method for setting the value of maximum car body point radius for randomization purposes.
+    void setMaxCarBodyPointRadius_(double max_car_body_point_radius);
+    //!  A Method for setting the value of car body point cartesian sigma for randomization purposes.
+    void setCarBodyPointCartesianSigma_(double car_body_point_cartesian_sigma);
 
     //!  A Method for deciding whether a mutation will occur.
     /*!
@@ -138,7 +160,7 @@ private:
     /*!
         Store the information about expected value of wheel radius.
     */
-    double wheel_expedted_value_{0.5};
+    double wheel_expected_value_{0.5};
     //! Private variable.
     /*!
         Store the information about min radius of car body point (in regard to expected car body center in polar coordinates).
