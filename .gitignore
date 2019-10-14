@@ -1,6 +1,7 @@
 # IDE
 .idea/
 cmake-build*/
+.vscode/
 
 # Prerequisites
 *.d
@@ -16,7 +17,7 @@ cmake-build*/
 *.pch
 
 # Compiled Dynamic libraries
-# *.so
+*.so
 *.dylib
 *.dll
 
@@ -27,10 +28,25 @@ cmake-build*/
 # Compiled Static libraries
 *.lai
 *.la
-# *.a
+*.a
 *.lib
 
 # Executables
 *.exe
 *.out
 *.app
+
+# CMake
+cmake-build-debug/*
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# Make
+Makefile
+VehiclesEvolution
+
+# test
+test/lib*
+*googletest*
+test/runTests

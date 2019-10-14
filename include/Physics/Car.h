@@ -66,13 +66,13 @@ private:
     /*!
         The attribute consists of information about time, after which Car which is not moving further, is regarding as dead.
     */
-    static constexpr double TIME_STANDING_STILL_TO_DIE_S_{5};
+    static constexpr double TIME_STANDING_STILL_TO_DIE_S_{2};
 
     //!  Private static constant expression
     /*!
         The attribute consists of information about minimal distance that car needs to cover in one iteration not to be considered dead.
     */
-    static constexpr double MIN_DIST_IN_ITERATION_{1e-5};
+    static constexpr double MIN_DIST_IN_ITERATION_{1e-2};
 
     //!  Private object
     /*!
